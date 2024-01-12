@@ -54,6 +54,10 @@ cluster.on('exit', function (worker, code, signal) {
 });
 
 
+app.get("/test",(req,res)=>{
+    res.send({msg:"This is test"})
+})
+
 module.exports = app;
 
 
