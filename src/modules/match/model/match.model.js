@@ -15,6 +15,8 @@ const matchSchema = new mongoose.Schema({
      federation_logo:{type: String, default:null},
      is_show_federation_logo:{type: Boolean, default: false},
      is_show_add:{type: Boolean, default: true},
+     is_show_image:{type: Boolean, default:false},
+     is_show_video:{type: Boolean, default:false},
      is_show_marquee_logo:{type: Boolean, default: false},
      is_show_full_screen:{type: Boolean, default: false},
      is_swap_team:{type: Boolean, default: false},
