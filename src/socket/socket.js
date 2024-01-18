@@ -155,19 +155,7 @@ module.exports = function (http, app) {
         })
 
 
-        socket.on('setPosition', async (data, ack) => {
-            let update = {};
-            if (!data.match_id) {
-                ack({ success: false, message: "Match id is required" });
-            }
-            update = {
-                'teamA_score.position': "none",
-                'teamB_score.position': "none"
-            }
-            let query = { _id: data.match_id };
-            await AddPostion.updatePostion(query, update, io, 'updatePosition');
-        })
-
+       
 
         socket.on('getPosition', async (data, ack) => {
             let update = {};
@@ -193,6 +181,13 @@ module.exports = function (http, app) {
                         'teamB_score.position': "left"
                     }
                 }
+                if (data.position == "none") {
+                    update = {
+                        'teamA_score.position': "none",
+                        'teamB_score.position': "none"
+                    }
+                }
+
                 let query = { _id: data.match_id };
                 await AddPostion.updatePostion(query, update, io, 'updatePosition');
 
@@ -210,11 +205,19 @@ module.exports = function (http, app) {
                         'teamB_score.position': "right"
                     }
                 }
+                if (data.position == "none") {
+                    update = {
+                        'teamA_score.position': "none",
+                        'teamB_score.position': "none"
+                    }
+                }
+
                 let query = { _id: data.match_id };
                 await AddPostion.updatePostion(query, update, io, 'updatePosition');
             }
 
         })
+
 
 
 
