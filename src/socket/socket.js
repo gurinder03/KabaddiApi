@@ -50,8 +50,6 @@ module.exports = function (http, app) {
 
 
         socket.on('getUpcomming', async (data, ack) => {
-            let update = {};
-            let query = {};
             if (data.commentator && data.commentator.length > 0) {
                 let commentators = data.commentator;
                 await Promise.all(
