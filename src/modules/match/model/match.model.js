@@ -27,7 +27,8 @@ const matchSchema = new mongoose.Schema({
      is_show_chiefguest: {type: Boolean, default: false},
      is_show_team:{type: Boolean, default: false},
      is_show_commentator:{type: Boolean, default: false},
-     
+     is_show_match:{type: Boolean, default: false},
+
      teamA_score:{
        name:{type: String},
        position:{type: String},  
@@ -62,6 +63,7 @@ const matchSchema = new mongoose.Schema({
      chiefguest: [],
      refree: [],
      commentator: [],
+     match:[],
      image:{type: String},
      utc_date_time:{type: Date},
      status:{type: String, enum:["pending","active","completed"], default:"pending"}
