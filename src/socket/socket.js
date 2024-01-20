@@ -4,6 +4,7 @@ const DBQuery = require('./query');
 const HideShow = require('./showHide');
 const AddScore = require('./score');
 const AddPostion = require('./position');
+const AddPerson = require('./addPerson');
 const AddReset = require('./reset');
 const MatchData = require('./match');
 
@@ -45,6 +46,23 @@ module.exports = function (http, app) {
             }
         });
 
+        socket.on('getPerson', async (data, ack) => {
+            let update = {};
+            if (!data.match_id) {
+                ack({ success: false, message: "Match id is required" });
+            }
+            if (data.commentator) {
+                update = {commentator: data.commentator};
+            }
+            if (data.refree) {
+                update = {refree: data.refree};
+            }
+            if (data.chiefguest) {
+                update = {chiefguest: data.chiefguest};
+            }
+            let query = { _id: data.match_id };
+            await AddPerson.updatePerson(query,update,io, 'setPerson');
+        })
 
         socket.on('getHideShow', async (data, ack) => {
             console.log(data,"Show difgoefgpfg we")
@@ -121,7 +139,6 @@ module.exports = function (http, app) {
             await DBQuery(query, update, io, data, 'updateHold');
         })
 
-
         socket.on('getRaider', async (data, ack) => {
             let update = {};
             if (!data.team) {
@@ -173,8 +190,6 @@ module.exports = function (http, app) {
             let query = { _id: data.match_id };
             await AddScore.updateScore(query, update,data,io, 'updateScore');
         })
-
-
        
 
         socket.on('getPosition', async (data, ack) => {
@@ -289,8 +304,6 @@ module.exports = function (http, app) {
             }
 
         })
-
-
 
         socket.on('getReset', async (data, ack) => {
             if (!data.match_id) {
