@@ -49,7 +49,7 @@ module.exports = function (http, app) {
         socket.on('getHideShow', async (data, ack) => {
             console.log(data,"Show difgoefgpfg we")
             if(data.type === 'image'){
-                if(data.is_show_add){
+                if(data.is_show_image){
                     data.is_show_image = true;
                     data.is_show_video = false;
                 }else{
@@ -59,7 +59,7 @@ module.exports = function (http, app) {
                
             }
             if(data.type === 'video'){
-                if(data.is_show_add){
+                if(data.is_show_video){
                     data.is_show_image = false;
                     data.is_show_video = true;
                 }else{
