@@ -8,6 +8,7 @@ const chiefguestSchema = new mongoose.Schema({
     name_without_space:{type: String,trim: true, lowercase: true},
     slug: { type: String, slug: "name" },
     image:{type: String},
+    is_checked:{type: Boolean, default: false},
     description:{type: String}
 },
     {

@@ -51,6 +51,7 @@ const matchSchema = new mongoose.Schema({
      is_show_sponser_logo:{type: Boolean, default: false},
      winning_team:{type: mongoose.Schema.Types.ObjectId, ref:"teams",default:null},
      losing_team: {type: mongoose.Schema.Types.ObjectId, ref:"teams", default: null},
+     is_checked:{type: Boolean, default: false},
      chiefguest: [],
      refree: [],
      commentator: [],
