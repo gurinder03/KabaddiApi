@@ -49,8 +49,11 @@ module.exports = function (http, app) {
 
 
         socket.on('getPerson', async (data, ack) => {
-            console.log("=======",data);
-            io.emit('setPerson', data);
+            let resdata = {
+               statusCode: 200,
+               data:data
+            }
+            io.emit('setPerson', resdata);
         })
 
         socket.on('getHideShow', async (data, ack) => {
