@@ -7,7 +7,6 @@ const AddPostion = require('./position');
 const AddPerson = require('./addPerson');
 const AddReset = require('./reset');
 const MatchData = require('./match');
-const mongoose = require('mongoose');
 
 module.exports = function (http, app) {
     const io = require('socket.io')(http, {
@@ -27,7 +26,7 @@ module.exports = function (http, app) {
     global.socketApp = io;
     //all socket listen request
     io.on('connection', function (socket) {
-        console.log("== user connected ==", socket.id);
+        console.log("== user connected ==",socket.id);
         socket.on('usersocket', (data, ack) => {
             try {
                 data.socketId = socket.id;
@@ -49,75 +48,53 @@ module.exports = function (http, app) {
         });
 
 
-        socket.on('getUpcomming', async (data, ack) => {
-            if (data.commentator && data.commentator.length > 0) {
-                let commentators = data.commentator;
-                await Promise.all(
-                    commentators.map(async(comment) =>{
-                       await mongoose.model("commentators").findOneAndUpdate({_id: comment._id},{is_checked: data.is_checked}),then().catch();
-                    })
-                )
+     socket.on('getUpcomming', async (data, ack) => {
+            if (!data.match_id) {
+                ack({ success: false, message: "Match id is required" });
             }
-            if (data.refree && data.refree.length > 0) {
-                let refrees = data.refree;
-                await Promise.all(
-                    refrees.map(async(ref) =>{
-                       await mongoose.model("refrees").findOneAndUpdate({_id: ref._id},{is_checked: data.is_checked}),then().catch();
-                    })
-                )
-            }
-            if (data.chiefguest && data.chiefguest.length > 0) {
-                let chiefguests = data.chiefguest;
-                await Promise.all(
-                    chiefguests.map(async(chief) =>{
-                       await mongoose.model("chiefguest").findOneAndUpdate({_id: chief._id},{is_checked: data.is_checked}),then().catch();
-                    })
-                )
-            }
-            if (data.match && data.match.length > 0) {
-                let matches = data.match;
-                await Promise.all(
-                    matches.map(async(mat) =>{
-                       await mongoose.model("matches").findOneAndUpdate({_id: mat._id},{is_checked: data.is_checked}),then().catch();
-                    })
-                )
-            }
+            let query = { _id: data.match_id };
+            await AddPerson.updatePerson(query,update,io, 'setUpcomming');
+        })
 
-            let [matches,commentators,refrees,chiefguests] = await Promise.all[
-                 mongoose.model("matches").find({is_checked: true}),then().catch(),
-                 mongoose.model("commentators").find({is_checked: true}),then().catch(),
-                 mongoose.model("refrees").find({is_checked: true}),then().catch(),
-                 mongoose.model("chiefguest").find({is_checked: true}),then().catch()
-            ]
-
-            let resdata = {
-                statusCode: 200,
-                matches: matches,
-                commentators: commentators,
-                refrees: refrees,
-                chiefguests:chiefguests
-            }
+        socket.on('getPerson', async (data, ack) => {
             
-            io.emit('setUpcomming',resdata);
+            let update = {};
+            if (!data.match_id) {
+                ack({ success: false, message: "Match id is required" });
+            }
+            if (data.commentator) {
+                update = {commentator: data.commentator};
+            }
+            if (data.refree) {
+                update = {refree: data.refree};
+            }
+            if (data.chiefguest) {
+                update = {chiefguest: data.chiefguest};
+            }
+            if (data.team) {
+                update = {team: data.team};
+            }
+            let query = { _id: data.match_id };
+            await AddPerson.updatePerson(query,update,io, 'setPerson');
         })
 
         socket.on('getHideShow', async (data, ack) => {
-            console.log(data, "Show difgoefgpfg we")
-            if (data.type === 'image') {
-                if (data.is_show_image) {
+            console.log(data,"Show difgoefgpfg we")
+            if(data.type === 'image'){
+                if(data.is_show_image){
                     data.is_show_image = true;
                     data.is_show_video = false;
-                } else {
+                }else{
                     data.is_show_image = false;
                     data.is_show_video = true;
                 }
-
+               
             }
-            if (data.type === 'video') {
-                if (data.is_show_video) {
+            if(data.type === 'video'){
+                if(data.is_show_video){
                     data.is_show_image = false;
                     data.is_show_video = true;
-                } else {
+                }else{
                     data.is_show_image = true;
                     data.is_show_video = false;
                 }
@@ -225,9 +202,9 @@ module.exports = function (http, app) {
                 }
             }
             let query = { _id: data.match_id };
-            await AddScore.updateScore(query, update, data, io, 'updateScore');
+            await AddScore.updateScore(query, update,data,io, 'updateScore');
         })
-
+       
 
         socket.on('getPosition', async (data, ack) => {
             let update = {};
@@ -243,7 +220,7 @@ module.exports = function (http, app) {
             if (!data.position) {
                 ack({ success: false, message: "Postion is required" });
             }
-            if (data.user_type == "admin") {
+            if(data.user_type == "admin"){
                 if (data.team == 'A') {
                     if (data.position == "left") {
                         update = {
@@ -265,7 +242,7 @@ module.exports = function (http, app) {
                     }
                     let query = { _id: data.match_id };
                     await AddPostion.updatePostion(query, update, io, 'updatePosition');
-
+    
                 }
                 if (data.team == 'B') {
                     if (data.position == "left") {
@@ -286,11 +263,11 @@ module.exports = function (http, app) {
                             'teamB_score.admin_position': "none"
                         }
                     }
-
+    
                     let query = { _id: data.match_id };
                     await AddPostion.updatePostion(query, update, io, 'updatePosition');
                 }
-            } else {
+            }else{
                 if (data.team == 'A') {
                     if (data.position == "left") {
                         update = {
@@ -310,10 +287,10 @@ module.exports = function (http, app) {
                             'teamB_score.position': "none"
                         }
                     }
-
+    
                     let query = { _id: data.match_id };
                     await AddPostion.updatePostion(query, update, io, 'updatePosition');
-
+    
                 }
                 if (data.team == 'B') {
                     if (data.position == "left") {
@@ -334,10 +311,10 @@ module.exports = function (http, app) {
                             'teamB_score.position': "none"
                         }
                     }
-
+    
                     let query = { _id: data.match_id };
                     await AddPostion.updatePostion(query, update, io, 'updatePosition');
-                }
+                }   
             }
 
         })

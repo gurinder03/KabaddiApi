@@ -9,6 +9,7 @@ const commentatorSchema = new mongoose.Schema({
     slug: { type: String, slug: "name" },
     age:{type: String},
     image:{type: String},
+    is_checked:{type: Boolean, default: false},
     experience:{type: String}
 },
     {

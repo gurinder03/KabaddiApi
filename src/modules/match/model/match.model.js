@@ -14,7 +14,7 @@ const matchSchema = new mongoose.Schema({
      utc_time:{type: String},
      federation_logo:{type: String, default:null},
      is_show_federation_logo:{type: Boolean, default: false},
-     is_show_add:{type: Boolean, default: true},
+     is_show_add:{type: Boolean, default: false},
      is_show_image:{type: Boolean, default:false},
      is_show_video:{type: Boolean, default:false},
      is_show_marquee_logo:{type: Boolean, default: false},
@@ -22,6 +22,12 @@ const matchSchema = new mongoose.Schema({
      is_swap_team:{type: Boolean, default: false},
      is_score_added:{type: Boolean, default: false},
      is_score_done:{type: Boolean, default: false},
+
+     is_show_refree:{type: Boolean, default: false},
+     is_show_chiefguest: {type: Boolean, default: false},
+     is_show_team:{type: Boolean, default: false},
+     is_show_commentator:{type: Boolean, default: false},
+     
      teamA_score:{
        name:{type: String},
        position:{type: String},  
@@ -52,6 +58,7 @@ const matchSchema = new mongoose.Schema({
      winning_team:{type: mongoose.Schema.Types.ObjectId, ref:"teams",default:null},
      losing_team: {type: mongoose.Schema.Types.ObjectId, ref:"teams", default: null},
      is_checked:{type: Boolean, default: false},
+     team:[],
      chiefguest: [],
      refree: [],
      commentator: [],
