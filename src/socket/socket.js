@@ -49,6 +49,7 @@ module.exports = function (http, app) {
 
 
         socket.on('getPerson', async (data, ack) => {
+            console.log("=======",data);
             io.emit('setPerson', data);
         })
 
