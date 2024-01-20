@@ -24,7 +24,8 @@ const matchSchema = new mongoose.Schema({
      is_score_done:{type: Boolean, default: false},
      teamA_score:{
        name:{type: String},
-       position:{type: String},     
+       position:{type: String},  
+       admin_position:{type: String},   
        logo:{type: String},
        hold:{type: Number, default:0}, // add to hold remove from total
        stopper:{type: Number, default:0},
@@ -35,6 +36,7 @@ const matchSchema = new mongoose.Schema({
      teamB_score:{
         name:{type: String},
         position:{type: String},
+        admin_position:{type: String}, 
         logo:{type: String},
         hold:{type: Number, default:0},     // add to hold remove from total
         stopper:{type: Number, default:0},
