@@ -48,6 +48,7 @@ module.exports = function (http, app) {
 
 
         socket.on('getPerson', async (data, ack) => {
+            console.log("=== data data",data);
             let update = {};
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
