@@ -49,22 +49,7 @@ module.exports = function (http, app) {
 
 
         socket.on('getPerson', async (data, ack) => {
-            console.log("=== data data",data);
-            let update = {};
-            if (!data.match_id) {
-                ack({ success: false, message: "Match id is required" });
-            }
-            if (data.commentator) {
-                update = {commentator: data.commentator};
-            }
-            if (data.refree) {
-                update = {refree: data.refree};
-            }
-            if (data.chiefguest) {
-                update = {chiefguest: data.chiefguest};
-            }
-            let query = { _id: data.match_id };
-            await AddPerson.updatePerson(query,update,io, 'setPerson');
+            io.emit('setPerson', data);
         })
 
         socket.on('getHideShow', async (data, ack) => {
