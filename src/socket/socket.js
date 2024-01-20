@@ -49,10 +49,23 @@ module.exports = function (http, app) {
         socket.on('getHideShow', async (data, ack) => {
             console.log(data,"Show difgoefgpfg we")
             if(data.type === 'image'){
-                data.is_show_image = data.is_show_add
+                if(data.is_show_add){
+                    data.is_show_image = true;
+                    data.is_show_video = false;
+                }else{
+                    data.is_show_image = false;
+                    data.is_show_video = true;
+                }
+               
             }
             if(data.type === 'video'){
-                data.is_show_video = data.is_show_add
+                if(data.is_show_add){
+                    data.is_show_image = false;
+                    data.is_show_video = true;
+                }else{
+                    data.is_show_image = true;
+                    data.is_show_video = false;
+                }
             }
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
@@ -166,6 +179,9 @@ module.exports = function (http, app) {
 
         socket.on('getPosition', async (data, ack) => {
             let update = {};
+            if (!data.user_type) {
+                ack({ success: false, message: "User type (user_type) is required" });
+            }
             if (!data.team) {
                 ack({ success: false, message: "Team (A or B) is required" });
             }
@@ -175,56 +191,104 @@ module.exports = function (http, app) {
             if (!data.position) {
                 ack({ success: false, message: "Postion is required" });
             }
-            if (data.team == 'A') {
-                if (data.position == "left") {
-                    update = {
-                        'teamA_score.position': "left",
-                        'teamB_score.position': "right"
+            if(data.user_type == "admin"){
+                if (data.team == 'A') {
+                    if (data.position == "left") {
+                        update = {
+                            'teamA_score.admin_position': "left",
+                            'teamB_score.admin_position': "right"
+                        }
                     }
-                }
-                if (data.position == "right") {
-                    update = {
-                        'teamA_score.position': "right",
-                        'teamB_score.position': "left"
+                    if (data.position == "right") {
+                        update = {
+                            'teamA_score.admin_position': "right",
+                            'teamB_score.admin_position': "left"
+                        }
                     }
-                }
-                if (data.position == "none") {
-                    update = {
-                        'teamA_score.position': "none",
-                        'teamB_score.position': "none"
+                    if (data.position == "none") {
+                        update = {
+                            'teamA_score.admin_position': "none",
+                            'teamB_score.admin_position': "none"
+                        }
                     }
+                    let query = { _id: data.match_id };
+                    await AddPostion.updatePostion(query, update, io, 'updatePosition');
+    
                 }
-
-                let query = { _id: data.match_id };
-                await AddPostion.updatePostion(query, update, io, 'updatePosition');
-
-            }
-            if (data.team == 'B') {
-                if (data.position == "left") {
-                    update = {
-                        'teamA_score.position': "right",
-                        'teamB_score.position': "left"
+                if (data.team == 'B') {
+                    if (data.position == "left") {
+                        update = {
+                            'teamA_score.admin_position': "right",
+                            'teamB_score.admin_position': "left"
+                        }
                     }
-                }
-                if (data.position == "right") {
-                    update = {
-                        'teamA_score.position': "left",
-                        'teamB_score.position': "right"
+                    if (data.position == "right") {
+                        update = {
+                            'teamA_score.admin_position': "left",
+                            'teamB_score.admin_position': "right"
+                        }
                     }
-                }
-                if (data.position == "none") {
-                    update = {
-                        'teamA_score.position': "none",
-                        'teamB_score.position': "none"
+                    if (data.position == "none") {
+                        update = {
+                            'teamA_score.admin_position': "none",
+                            'teamB_score.admin_position': "none"
+                        }
                     }
+    
+                    let query = { _id: data.match_id };
+                    await AddPostion.updatePostion(query, update, io, 'updatePosition');
                 }
-
-                let query = { _id: data.match_id };
-                await AddPostion.updatePostion(query, update, io, 'updatePosition');
+            }else{
+                if (data.team == 'A') {
+                    if (data.position == "left") {
+                        update = {
+                            'teamA_score.position': "left",
+                            'teamB_score.position': "right"
+                        }
+                    }
+                    if (data.position == "right") {
+                        update = {
+                            'teamA_score.position': "right",
+                            'teamB_score.position': "left"
+                        }
+                    }
+                    if (data.position == "none") {
+                        update = {
+                            'teamA_score.position': "none",
+                            'teamB_score.position': "none"
+                        }
+                    }
+    
+                    let query = { _id: data.match_id };
+                    await AddPostion.updatePostion(query, update, io, 'updatePosition');
+    
+                }
+                if (data.team == 'B') {
+                    if (data.position == "left") {
+                        update = {
+                            'teamA_score.position': "right",
+                            'teamB_score.position': "left"
+                        }
+                    }
+                    if (data.position == "right") {
+                        update = {
+                            'teamA_score.position': "left",
+                            'teamB_score.position': "right"
+                        }
+                    }
+                    if (data.position == "none") {
+                        update = {
+                            'teamA_score.position': "none",
+                            'teamB_score.position': "none"
+                        }
+                    }
+    
+                    let query = { _id: data.match_id };
+                    await AddPostion.updatePostion(query, update, io, 'updatePosition');
+                }   
             }
 
         })
-
 
 
 
