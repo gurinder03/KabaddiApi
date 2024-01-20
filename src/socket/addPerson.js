@@ -8,6 +8,7 @@ module.exports.updatePerson = async(query, update, io, name) => {
         .populate('tournament')
         .populate('winning_team')
         .populate('losing_team').then((resdata) => {
+            console.log("=====resdata",resdata);
             io.emit(name, resdata);
         }).catch((err) => {
             console.log("Error", err);
