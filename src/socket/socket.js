@@ -52,6 +52,31 @@ module.exports = function (http, app) {
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
             }
+         
+            if(data.is_show_refree){
+                data.is_show_refree = true;
+                data.is_show_chiefguest = false;
+                data.is_show_commentator = false;
+                data.is_show_match = false
+            }
+            if(data.is_show_chiefguest){
+                data.is_show_chiefguest = true; 
+                data.is_show_refree = false;
+                data.is_show_commentator = false;
+                data.is_show_match = false
+            }
+            if(data.is_show_commentator){
+                data.is_show_commentator = true; 
+                data.is_show_refree = false;
+                data.is_show_refree = false;
+                data.is_show_match = false
+            }
+            if(data.is_show_match){
+                data.is_show_match = true; 
+                data.is_show_refree = false;
+                data.is_show_refree = false;
+                data.is_show_commentator = false
+            }
 
             let query = { _id: data.match_id };
             await AddPerson.updatePerson(query, data, io, 'setUpcomming');
