@@ -67,13 +67,13 @@ module.exports = function (http, app) {
             }
             if(data.is_show_commentator){
                 data.is_show_commentator = true; 
-                data.is_show_refree = false;
+                data.is_show_chiefguest = false;
                 data.is_show_refree = false;
                 data.is_show_match = false
             }
             if(data.is_show_match){
                 data.is_show_match = true; 
-                data.is_show_refree = false;
+                data.is_show_chiefguest = false;
                 data.is_show_refree = false;
                 data.is_show_commentator = false
             }
