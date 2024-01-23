@@ -89,16 +89,28 @@ module.exports = function (http, app) {
                 ack({ success: false, message: "Match id is required" });
             }
             if (data.commentator) {
+                if (data.commentator.length > 8) {
+                    ack({ success: false, message: "Commentator can not more than 8" });
+                }
                 update = { commentator: data.commentator };
             }
             if (data.refree) {
+                if (data.refree.length > 8) {
+                    ack({ success: false, message: "Refree can not more than 8" });
+                }
                 update = { refree: data.refree };
             }
             if (data.chiefguest) {
+                if (data.chiefguest.length > 8) {
+                    ack({ success: false, message: "Chiefguest can not more than 8" });
+                }
                 update = { chiefguest: data.chiefguest };
             }
-            if (data.team) {
-                update = { team: data.team };
+            if (data.match) {
+                if (data.match.length > 8) {
+                    ack({ success: false, message: "Match can not more than 8" });
+                }
+                update = { match: data.match };
             }
             let query = { _id: data.match_id };
             await AddPerson.updatePerson(query, update, io, 'setPerson');
