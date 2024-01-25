@@ -3,9 +3,9 @@
 
 const  Router = require('express').Router();
 const Authenticator = require("../../../utils/auth");
-const Validator = require('../validator/refree.validator');
+const Validator = require('../validator/coach.validator');
 const uploadImage = require("../../../helper/imageUploader");
-const Service =  require('../service/refree.service');
+const Service =  require('../service/coach.service');
  
 
 /************************************************ ADMIN ROUTES**********************************************/

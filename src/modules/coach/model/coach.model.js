@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
 mongoose.plugin(slug);
 
-const refreeSchema = new mongoose.Schema({
+const coachSchema = new mongoose.Schema({
     name: { type: String },
     name_without_space:{type: String,trim: true, lowercase: true},
     slug: { type: String, slug: "name" },
@@ -17,7 +17,7 @@ const refreeSchema = new mongoose.Schema({
         timestamps: true
     },{createAt: "created_at", updatedAt: "updated_at"})
 
-module.exports = mongoose.model('refrees', refreeSchema, 'refrees');
+module.exports = mongoose.model('coach', coachSchema, 'coach');
 
 
 

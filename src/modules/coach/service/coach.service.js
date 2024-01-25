@@ -1,6 +1,6 @@
 
 const Response = require('../../../utils/response');
-const Controller = require('../controller/refee.controller');
+const Controller = require('../controller/coach.controller');
 
 const add = async (req, res) => {
    try {

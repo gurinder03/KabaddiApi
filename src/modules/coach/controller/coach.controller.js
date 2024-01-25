@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const Handler = require('../handler/refree.handler');
+const Handler = require('../handler/coach.handler');
 
 exports.add = (payload) => {
     return new Promise(async (resolve, reject) => {
