@@ -11,6 +11,7 @@ const add = async (req, res) => {
       // if (file) {
       //     req.body.logo = file.location;
       // }
+      delete req.body.id;
       let result = await Controller.add(req.body);
       return Response.successResponse(res, "Added successfully", result);
    } catch (err) {
@@ -35,6 +36,7 @@ const update = async (req, res) => {
       // if (file) {
       //     payload.logo = file.location;
       // }
+
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {
