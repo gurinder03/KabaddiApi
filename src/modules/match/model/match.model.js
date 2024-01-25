@@ -61,7 +61,6 @@ const matchSchema = new mongoose.Schema({
      winning_team:{type: mongoose.Schema.Types.ObjectId, ref:"teams",default:null},
      losing_team: {type: mongoose.Schema.Types.ObjectId, ref:"teams", default: null},
      is_checked:{type: Boolean, default: false},
-     team:[],
      chiefguest: [],
      refree: [],
      commentator: [],
