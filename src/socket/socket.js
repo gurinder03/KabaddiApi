@@ -63,7 +63,7 @@ module.exports = function (http, app) {
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false
-                payload = await mongoose.model("refree").find({is_checked: true}).then().catch();
+                payload = await mongoose.model("refrees").find({is_checked: true}).then().catch();
             }
             if(data.is_show_coach){
                 data.is_show_coach = true;
@@ -87,7 +87,7 @@ module.exports = function (http, app) {
                 data.is_show_coach = false;
                 data.is_show_refree = false;
                 data.is_show_match = false;
-                payload = await mongoose.model("chiefguest").find({is_checked: true}).then().catch();
+                payload = await mongoose.model("commentators").find({is_checked: true}).then().catch();
             }
             if(data.is_show_match){
                 data.is_show_match = true; 
