@@ -16,6 +16,7 @@ const matchSchema = new mongoose.Schema({
      is_show_federation_logo:{type: Boolean, default: false},
      is_show_add:{type: Boolean, default: false},
      is_show_image:{type: Boolean, default:false},
+     is_show_coach:{type: Boolean, default:false},
      is_show_video:{type: Boolean, default:false},
      is_show_marquee_logo:{type: Boolean, default: false},
      is_show_full_screen:{type: Boolean, default: false},
@@ -64,6 +65,7 @@ const matchSchema = new mongoose.Schema({
      refree: [],
      commentator: [],
      match:[],
+     coach:[],
      image:{type: String},
      utc_date_time:{type: Date},
      status:{type: String, enum:["pending","active","completed"], default:"pending"}
