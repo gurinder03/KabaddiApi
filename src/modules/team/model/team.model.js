@@ -6,6 +6,8 @@ mongoose.plugin(slug);
 const teamSchema = new mongoose.Schema({
     name: { type: String },
     name_without_space:{type: String,trim: true, lowercase: true},
+    coach_image:{type: String},
+    coach_name:{type: String},
     slug: { type: String, slug: "name" },
     place:{type: String},
     logo:{type: String},
