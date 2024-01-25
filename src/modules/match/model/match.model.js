@@ -12,6 +12,7 @@ const matchSchema = new mongoose.Schema({
      time:{type: String},
      utc_date:{type: Date},
      utc_time:{type: String},
+     is_checked:{type: Boolean, default: false},
      federation_logo:{type: String, default:null},
      is_show_federation_logo:{type: Boolean, default: false},
      is_show_add:{type: Boolean, default: false},
