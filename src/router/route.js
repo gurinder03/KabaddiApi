@@ -7,6 +7,7 @@ module.exports = (app) =>{
     app.use('/api/v1/commentator',require('../modules/commentator/router/commentator.router'));
     app.use('/api/v1/team',require('../modules/team/router/team.router'));
     app.use('/api/v1/refree',require('../modules/refree/router/refree.router'));
+    app.use('/api/v1/coach',require('../modules/coach/router/coach.router'));
     app.use('/api/v1/match',require('../modules/match/router/match.router'));
     app.use('/api/v1/player',require('../modules/player/router/palyer.router'));
     // app.use('/api/v1/round',require('../modules/round/router/round.router'));
