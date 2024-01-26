@@ -1,5 +1,6 @@
 
 const Response = require('../../../utils/response');
+const mongoose = require('mongoose');
 const Controller = require('../controller/chiefguest.controller');
 
 const add = async (req, res) => {
@@ -34,6 +35,9 @@ const update = async (req, res) => {
       const file =  req.file;
       if (file) {
           payload.image = file.location;
+      }
+      if(payload.match_id){
+         await mongoose.model("chiefguest").findOneAndUpdate({_id: payload.match_id},{chiefguest: JSON.parse(payload.chiefguest)},{new: true});
       }
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
