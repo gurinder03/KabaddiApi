@@ -34,7 +34,7 @@ const update = async (req, res) => {
       const payload = req.body;
       const file =  req.file;
       if (file) {
-          payload.image = file.location;
+          payload.image = file.location;  
       }
       if(payload.match_id){
          await mongoose.model("matches").findOneAndUpdate({_id: payload.match_id},{refree: JSON.parse(payload.refree)},{new: true});
