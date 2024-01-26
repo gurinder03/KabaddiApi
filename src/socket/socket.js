@@ -26,7 +26,6 @@ module.exports = function (http, app) {
     global.socketApp = io;
     //all socket listen request
     io.on('connection', function (socket) {
-        console.log("== user connected ==", socket.id);
         socket.on('usersocket', (data, ack) => {
             try {
                 data.socketId = socket.id;
@@ -52,7 +51,6 @@ module.exports = function (http, app) {
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
             }
-         
             if(data.is_show_refree){
                 data.is_show_refree = true;
                 data.is_show_chiefguest = false;
@@ -88,6 +86,11 @@ module.exports = function (http, app) {
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
             }
+
+            if (data.player) {
+                update = { player: data.player };
+            }
+
             if (data.commentator) {
                 if (data.commentator.length > 8) {
                     ack({ success: false, message: "Commentator can not more than 8" });
@@ -397,3 +400,5 @@ module.exports = function (http, app) {
 
 
 }
+
+    
