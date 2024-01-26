@@ -37,7 +37,7 @@ const update = async (req, res) => {
           payload.image = file.location;
       }
       if(payload.match_id){
-         await mongoose.model("coach").findOneAndUpdate({_id: payload.match_id},{coach: payload.coach},{new: true});
+         await mongoose.model("coach").findOneAndUpdate({_id: payload.match_id},{coach:JSON.parse(payload.coach)},{new: true});
       }
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
