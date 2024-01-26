@@ -30,7 +30,7 @@ const update = async (req, res) => {
    try {
       const payload = req.body;
       if(payload.match_id){
-         await mongoose.model("matches").findOneAndUpdate({_id: payload.match_id},{match: JSON.parse(payload.match)},{new: true});
+         await mongoose.model("matches").findOneAndUpdate({_id: payload.match_id},{match: payload.match},{new: true});
       }
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);

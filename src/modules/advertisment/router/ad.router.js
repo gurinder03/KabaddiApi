@@ -9,6 +9,7 @@ const Service =  require('../service/ad.service');
 
 /************************************************ ADMIN ROUTES**********************************************/
 Router.post("/add",Service.add);
+Router.post("/add/post", Validator.add,Service.add);
 Router.get("/list",Service.list);
 Router.get("/view/:id",Validator.view,Service.view);
 Router.post("/update",Validator.update,Service.update);

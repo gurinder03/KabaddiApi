@@ -6,6 +6,8 @@ mongoose.plugin(slug);
 const advertismentSchema = new mongoose.Schema({
      image:{type: String},
      video:{type: String},
+     main_post:{type: String},
+     other_post:[],
      marquee_logo:{type: String},
      merquee_text:{type: String}
 },

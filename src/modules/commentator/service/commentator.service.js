@@ -33,7 +33,6 @@ const update = async (req, res) => {
    try {
       const payload = req.body;
       const file =  req.file;
-      console.log("====>>>>>>>>", payload);
       if (file) {
           payload.image = file.location;
       }
