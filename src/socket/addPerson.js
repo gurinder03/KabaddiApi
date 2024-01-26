@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-module.exports.updatePerson = async(query, update,payload, io, name) => {
+module.exports.updatePerson = async(query, update, io, name) => {
     console.log("=====",update,query,payload);
     mongoose.model("matches").findOneAndUpdate(query, update, { new: true })
         .populate('teamA')

@@ -88,7 +88,7 @@ module.exports = function (http, app) {
                 data.is_show_commentator = false;
             }
             let query = { _id: data.match_id };
-            await AddPerson.updatePerson(query, data, io, payload,'setUpcomming');
+            await AddPerson.updatePerson(query, data, io,'setUpcomming');
         })
 
         socket.on('getPerson', async (data, ack) => {
