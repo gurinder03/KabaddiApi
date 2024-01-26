@@ -48,21 +48,17 @@ module.exports = function (http, app) {
         });
 
 
-
-  
-
         socket.on('getUpcomming', async (data, ack) => {
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
             }
-            let payload ;
             if(data.is_show_refree){
                 data.is_show_refree = true;
                 data.is_show_coach = false;
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false
-                payload = await mongoose.model("refrees").find({is_checked: true}).then().catch();
+                data.refree = await mongoose.model("refrees").find({_id: {$ne:data.match_id},is_checked: true}).then().catch();
             }
             if(data.is_show_coach){
                 data.is_show_coach = true;
@@ -70,7 +66,7 @@ module.exports = function (http, app) {
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false
-                payload = await mongoose.model("coach").find({is_checked: true}).then().catch();
+                data.coach = await mongoose.model("coach").find({_id: {$ne:data.match_id},is_checked: true}).then().catch();
             }
             if(data.is_show_chiefguest){
                 data.is_show_chiefguest = true; 
@@ -78,7 +74,7 @@ module.exports = function (http, app) {
                 data.is_show_coach = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false;
-                payload = await mongoose.model("chiefguest").find({is_checked: true}).then().catch();
+                data.chiefguest = await mongoose.model("chiefguest").find({_id: {$ne:data.match_id},is_checked: true}).then().catch();
             }
             if(data.is_show_commentator){
                 data.is_show_commentator = true; 
@@ -86,7 +82,7 @@ module.exports = function (http, app) {
                 data.is_show_coach = false;
                 data.is_show_refree = false;
                 data.is_show_match = false;
-                payload = await mongoose.model("commentators").find({is_checked: true}).then().catch();
+                data.commentator = await mongoose.model("commentators").find({_id: {$ne:data.match_id},is_checked: true}).then().catch();
             }
             if(data.is_show_match){
                 data.is_show_match = true; 
@@ -94,9 +90,8 @@ module.exports = function (http, app) {
                 data.is_show_refree = false;
                 data.is_show_coach = false;
                 data.is_show_commentator = false
-                payload = await mongoose.model("matches").find({is_checked: true}).then().catch();
+                data.match = await mongoose.model("matches").find({_id: {$ne:data.match_id},is_checked: true}).then().catch();
             }
-
             let query = { _id: data.match_id };
             await AddPerson.updatePerson(query, data, io, payload,'setUpcomming');
         })
