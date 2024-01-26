@@ -4,6 +4,7 @@ const settingModel = require('../modules/setting/model/setting.model');
 const matchModel = require('../modules/match/model/match.model');
 const palyerModel = require('../modules/player/model/player.model');
 const refreeModel = require('../modules/refree/model/refree.model');
+const coachModel = require('../modules/coach/model/coach.model');
 const teamModel = require('../modules/team/model/team.model');
 const tournamentModel = require('../modules/tournament/model/tournament.model'); 
 const commentatorModel = require('../modules/commentator/model/commentator.model');
@@ -16,6 +17,7 @@ module.exports = {
     refreeModel,
     palyerModel,
     matchModel,
+    coachModel,
     teamModel,
     commentatorModel,
     tournamentModel,

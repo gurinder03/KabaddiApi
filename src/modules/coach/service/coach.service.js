@@ -1,17 +1,16 @@
 
 const Response = require('../../../utils/response');
-const Controller = require('../controller/team.controller');
+const Controller = require('../controller/coach.controller');
 
 const add = async (req, res) => {
    try {
-      // const file = req.file;
-      // if (!file) {
-      //     return Response.validatorResponse(res, "Logo is required");
-      // }
-      // if (file) {
-      //     req.body.logo = file.location;
-      // }
-      delete req.body.id;
+      const file = req.file;
+      if (!file) {
+          return Response.validatorResponse(res, "Image is required");
+      }
+      if (file) {
+          req.body.image = file.location;
+      }
       let result = await Controller.add(req.body);
       return Response.successResponse(res, "Added successfully", result);
    } catch (err) {
@@ -32,11 +31,10 @@ const view = async (req, res) => {
 const update = async (req, res) => {
    try {
       const payload = req.body;
-      // const file =  req.file;
-      // if (file) {
-      //     payload.logo = file.location;
-      // }
-
+      const file =  req.file;
+      if (file) {
+          payload.image = file.location;
+      }
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {
@@ -53,7 +51,7 @@ const list = async(req,res) =>{
    }
 }
 
-const listAll =  async(req,res) =>{
+const listAll = async(req,res) =>{
    try{
        let result = await Controller.listAll();
        return Response.successResponse(res, "List successfully", result);
@@ -61,6 +59,7 @@ const listAll =  async(req,res) =>{
        return Response.internalError(res,err);
    }
 }
+
 exports.view = view;
 exports.add = add;
 exports.update = update;
