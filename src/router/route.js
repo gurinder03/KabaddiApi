@@ -10,8 +10,8 @@ module.exports = (app) =>{
     app.use('/api/v1/coach',require('../modules/coach/router/coach.router'));
     app.use('/api/v1/match',require('../modules/match/router/match.router'));
     app.use('/api/v1/player',require('../modules/player/router/palyer.router'));
-    // app.use('/api/v1/round',require('../modules/round/router/round.router'));
     app.use('/api/v1/chiefguest',require('../modules/chiefguest/router/chiefguest.router'));
     app.use('/api/v1/fileupload',require('../modules/file/router/file.router'));
     app.use('/api/v1/advertise',require('../modules/advertisment/router/ad.router'));
+    app.use('/api/v1/post', require('../modules/post/router/post.router'));
 }

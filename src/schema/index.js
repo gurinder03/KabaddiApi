@@ -10,6 +10,7 @@ const tournamentModel = require('../modules/tournament/model/tournament.model');
 const commentatorModel = require('../modules/commentator/model/commentator.model');
 const chiefguestModel = require('../modules/chiefguest/model/chiefguest.model');
 const advertisementModel = require('../modules/advertisment/model/ad.model');
+const postModel = require('../modules/post/model/post.model');
 
 module.exports = {
     userModel,
@@ -19,8 +20,12 @@ module.exports = {
     matchModel,
     coachModel,
     teamModel,
+    postModel,
     commentatorModel,
     tournamentModel,
     chiefguestModel,
     advertisementModel
 }
+
+
+// db.posts.create({"main_post":"none","other_post":[]})
