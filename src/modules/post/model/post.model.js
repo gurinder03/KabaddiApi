@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     main_post: { type: String },
     other_post: [{
-        postion: { type: Number },
+        position: { type: Number },
         url: { type: String },
         type: { type: String, default: "image" }
     }]
