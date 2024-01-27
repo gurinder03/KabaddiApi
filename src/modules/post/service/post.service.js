@@ -1,8 +1,7 @@
 
 const Response = require('../../../utils/response');
+const mongoose = require('mongoose');
 const Controller = require('../controller/post.controller');
-
-
 
 const view = async (req, res) => {
    try {
@@ -23,8 +22,19 @@ const update = async (req, res) => {
    }
 }
 
+const shareview = async (req, res) => {
+   try {
+      let data =  await mongoose.findOne().then().catch();
+      console.log("== data data ====",data);
+      res.render('post.ejs',data)
+   } catch (err) {
+      return Response.internalError(res, err);
+   }
+}
+
 
 
 exports.view = view;
 exports.update = update;
+exports.shareview = shareview;
 

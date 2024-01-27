@@ -9,6 +9,8 @@ const Service =  require('../service/post.service');
 
 Router.get("/view",Service.view);
 Router.post("/update",Service.update);
+Router.get("/share/view",Service.shareview);
+
 
 
 module.exports =  Router;
