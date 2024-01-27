@@ -24,7 +24,7 @@ const update = async (req, res) => {
 
 const shareview = async (req, res) => {
    try {
-      let data =  await mongoose.findOne().then().catch();
+      let data =  await mongoose.model("posts").findOne().then().catch();
       console.log("== data data ====",data);
       res.render('post.ejs',data)
    } catch (err) {
