@@ -4,7 +4,7 @@ const Handler = require('../handler/post.handler');
 
 
 
-exports.view = async (payload) => {
+exports.view = async () => {
     return new Promise(async (resolve, reject) => {
         try {
             let params = {

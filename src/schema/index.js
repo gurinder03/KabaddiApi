@@ -27,5 +27,3 @@ module.exports = {
     advertisementModel
 }
 
-
-// db.posts.create({"main_post":"none","other_post":[]})
