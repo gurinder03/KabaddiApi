@@ -66,7 +66,7 @@ const matchSchema = new mongoose.Schema({
      refree: [],
      commentator: [],
      match:[],
-     player:[],
+     card:[],
      coach:[],
      image:{type: String},
      utc_date_time:{type: Date},

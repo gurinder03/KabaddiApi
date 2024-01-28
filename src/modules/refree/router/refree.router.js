@@ -17,3 +17,8 @@ Router.post("/update",uploadImage.single('image'),Validator.update,Service.updat
 
 
 module.exports =  Router;
+
+
+
+
+

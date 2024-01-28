@@ -47,6 +47,17 @@ module.exports = function (http, app) {
             }
         });
 
+        socket.on('getCard', async (data, ack) => {
+            let update;
+            if (!data.match_id) {
+                ack({ success: false, message: "Match id is required" });
+            }
+            if(data.card){
+                update = {card: data.card};
+            }
+            let query = { _id: data.match_id };
+            await AddPerson.updatePerson(query, update, io,'setCard');
+        })
 
         socket.on('getUpcomming', async (data, ack) => {
             if (!data.match_id) {
