@@ -49,6 +49,7 @@ module.exports = function (http, app) {
 
         socket.on('getCard', async (data, ack) => {
             let update;
+            console.log("getCard getCard",data);
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
             }
