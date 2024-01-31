@@ -48,21 +48,21 @@ module.exports = function (http, app) {
         });
 
         socket.on('getCard', async (data, ack) => {
-            let update;
+            let update = {};
             console.log("getCard getCard",data);
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
             }
             if(data.card){
-                update = {card: data.card};
+                update.card =  data.card;
             }
             if(data.is_show_flag){
-                data.is_show_flag = true;
-                data.is_show_refree = false;
-                data.is_show_coach = false;
-                data.is_show_chiefguest = false;
-                data.is_show_commentator = false;
-                data.is_show_match = false;
+                update.is_show_flag = true;
+                update.is_show_refree = false;
+                update.is_show_coach = false;
+                update.is_show_chiefguest = false;
+                update.is_show_commentator = false;
+                update.is_show_match = false;
             }
             let query = { _id: data.match_id };
             await AddPerson.updatePerson(query, update, io,'setCard');
