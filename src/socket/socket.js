@@ -78,6 +78,7 @@ module.exports = function (http, app) {
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false;
+                data.is_show_flag = false;
             }
             if(data.is_show_coach){
                 data.is_show_coach = true;
@@ -85,6 +86,7 @@ module.exports = function (http, app) {
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false;
+                data.is_show_flag = false;
             }
             if(data.is_show_chiefguest){
                 data.is_show_chiefguest = true; 
@@ -92,6 +94,7 @@ module.exports = function (http, app) {
                 data.is_show_coach = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false;
+                data.is_show_flag = false;
             }
             if(data.is_show_commentator){
                 data.is_show_commentator = true; 
@@ -99,6 +102,8 @@ module.exports = function (http, app) {
                 data.is_show_coach = false;
                 data.is_show_refree = false;
                 data.is_show_match = false;
+                data.is_show_flag = false;
+                data.is_show_flag = false;
             }
             if(data.is_show_match){
                 data.is_show_match = true; 
@@ -106,6 +111,7 @@ module.exports = function (http, app) {
                 data.is_show_refree = false;
                 data.is_show_coach = false;
                 data.is_show_commentator = false;
+                data.is_show_flag = false;
             }
             let query = { _id: data.match_id };
             await AddPerson.updatePerson(query, data, io,'setUpcomming');
