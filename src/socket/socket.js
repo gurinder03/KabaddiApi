@@ -56,6 +56,14 @@ module.exports = function (http, app) {
             if(data.card){
                 update = {card: data.card};
             }
+            if(data.is_show_flag){
+                data.is_show_flag = true;
+                data.is_show_refree = false;
+                data.is_show_coach = false;
+                data.is_show_chiefguest = false;
+                data.is_show_commentator = false;
+                data.is_show_match = false;
+            }
             let query = { _id: data.match_id };
             await AddPerson.updatePerson(query, update, io,'setCard');
         })
