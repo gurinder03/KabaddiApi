@@ -9,7 +9,6 @@ module.exports.updatePerson = async(query, update, io, name) => {
         .populate('losing_team').then((resdata) => {
             console.log("resdata resdata",resdata)
             io.emit(name,  resdata);
-            io.emit("updateScore",resdata);
         }).catch((err) => {
             console.log("Error", err);
         })
