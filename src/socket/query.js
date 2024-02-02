@@ -61,6 +61,7 @@ module.exports = async (query, update, io, data, name) => {
             }
 
             io.emit(name, res);
+            io.emit("updateScore",res);
         }).catch((err) => {
             console.log("Error", err);
         })
