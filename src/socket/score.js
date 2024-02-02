@@ -28,8 +28,8 @@ module.exports.updateScore = async(query, update,data, io, name) => {
                 .populate('winning_team')
                 .populate('losing_team').then().catch();
             }
-            console.log("== resdaatatattaat==", res_data);
             io.emit(name, res_data);
+            io.emit("updateScore",res_data);
         }).catch((err) => {
             console.log("Error", err);
         })

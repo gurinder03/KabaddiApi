@@ -59,8 +59,9 @@ module.exports = async (query, update, io, data, name) => {
                     teamB_score: data_Res.teamB_score
                 }
             }
-            console.log("== rewsrfwwrw==", res);
+
             io.emit(name, res);
+            io.emit("updateScore",res);
         }).catch((err) => {
             console.log("Error", err);
         })

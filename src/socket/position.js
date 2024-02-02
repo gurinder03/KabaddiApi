@@ -9,6 +9,7 @@ module.exports.updatePostion = async(query, update, io, name) => {
         .populate('winning_team')
         .populate('losing_team').then((resdata) => {
             io.emit(name, resdata);
+            io.emit("updateScore",resdata);
         }).catch((err) => {
             console.log("Error", err);
         })
