@@ -8,7 +8,6 @@ mongoose.model("matches").findOne(query)
         .populate('winning_team')
         .populate('losing_team').then((resdata) => {
             io.emit(name, resdata);
-            io.emit("updateScore",resdata);
         }).catch((err) => {
             console.log("Error", err);
         })

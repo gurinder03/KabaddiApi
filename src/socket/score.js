@@ -29,7 +29,6 @@ module.exports.updateScore = async(query, update,data, io, name) => {
                 .populate('losing_team').then().catch();
             }
             io.emit(name, res_data);
-            io.emit("updateScore",res_data);
         }).catch((err) => {
             console.log("Error", err);
         })
