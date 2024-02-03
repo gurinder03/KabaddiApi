@@ -5,6 +5,7 @@ const Handler = require('../handler/match.handler');
 exports.add = (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log("=== paylaod ==0",payload);
             delete payload.id;
             let params = {
                 Collection: mongoose.model("matches"),
