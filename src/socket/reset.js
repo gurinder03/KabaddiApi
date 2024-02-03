@@ -20,6 +20,7 @@ module.exports.updateReset = async(query,io, name) => {
         'teamB_score.addon':0,
         is_score_added: false
     }
+    console.log("== chekc query query ===",query);
 
     mongoose.model("matches").findOneAndUpdate(query, update, { new: true })   
     .populate('teamA')
