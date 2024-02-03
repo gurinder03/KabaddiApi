@@ -7,12 +7,12 @@ module.exports.add = (req,res,next)=>{
         return Response.validatorResponse(res,"Name is required");
     }
     req.body.name_without_space = req.body.name.trim().toLowerCase();
-    if(!req.body.place){
-        return Response.validatorResponse(res,"Place is required");
-    }
-    if(!req.body.coach){
-        return Response.validatorResponse(res,"Coach is required");
-    }
+    // if(!req.body.place){
+    //     return Response.validatorResponse(res,"Place is required");
+    // }
+    // if(!req.body.coach){
+    //     return Response.validatorResponse(res,"Coach is required");
+    // }
 
     next();
 }

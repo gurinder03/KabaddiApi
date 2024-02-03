@@ -6,27 +6,27 @@ module.exports.add = (req,res,next)=>{
         return Response.validatorResponse(res,"Name is required");
     }
     req.body.name_without_space = req.body.name.trim().toLowerCase();
-    if(!req.body.start_date){
-        return Response.validatorResponse(res,"Start date is required");
-    }
-    if(!req.body.end_date){
-        return Response.validatorResponse(res,"End date is required");
-    }
+    // if(!req.body.start_date){
+    //     return Response.validatorResponse(res,"Start date is required");
+    // }
+    // if(!req.body.end_date){
+    //     return Response.validatorResponse(res,"End date is required");
+    // }
     if(!req.body.place){
         return Response.validatorResponse(res,"Place is required");
     }
-    if(!req.body.winning_price){
-        return Response.validatorResponse(res,"Winning price is required");
-    }
-    if(!req.body.runner_up_price){
-        return Response.validatorResponse(res,"Runner up price is required");
-    }
-    if(!req.body.sponsors_detail){
-        return Response.validatorResponse(res,"Sponsers detail is required");
-    }
-    if(!req.body.referee){
-        return Response.validatorResponse(res,"Refree is required");
-    }
+    // if(!req.body.winning_price){
+    //     return Response.validatorResponse(res,"Winning price is required");
+    // }
+    // if(!req.body.runner_up_price){
+    //     return Response.validatorResponse(res,"Runner up price is required");
+    // }
+    // if(!req.body.sponsors_detail){
+    //     return Response.validatorResponse(res,"Sponsers detail is required");
+    // }
+    // if(!req.body.referee){
+    //     return Response.validatorResponse(res,"Refree is required");
+    // }
     req.body.status = "pending";
     next();
 }
