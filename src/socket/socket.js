@@ -51,9 +51,9 @@ module.exports = function (http, app) {
         socket.on('getCard', async (data, ack) => {
             let update = {};
             console.log("getCard getCard",data);
-            if (!data.match_id) {
-                ack({ success: false, message: "Match id is required" });
-            }
+            // if (!data.match_id) {
+            //     ack({ success: false, message: "Match id is required" });
+            // }
             if(data.card){
                 update.card =  data.card;
             }
@@ -65,8 +65,9 @@ module.exports = function (http, app) {
                 update.is_show_commentator = false;
                 update.is_show_match = false;
             }
-            let query = { _id: data.match_id };
-            await AddPerson.updatePerson(query, update, io,'setCard');
+            // let query = { _id: data.match_id };
+            // await AddPerson.updatePerson(query, update, io,'setCard');
+            await tempMatch.updateTempData(data, io,'setCard');
         })
 
         socket.on('getUpcomming', async (data, ack) => {
