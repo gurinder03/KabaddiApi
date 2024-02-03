@@ -41,7 +41,7 @@ if (cluster.isMaster) {
             app.connect(dbConnetion);
             require('./schema/index');
             require('./router/route')(app);
-            // require('./firebase/index');
+            require('./cron/task');
             require('./socket/socket')(http,app);  
             console.log(`Server is running at ${port}`)
         }
