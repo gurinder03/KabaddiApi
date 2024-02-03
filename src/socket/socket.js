@@ -7,6 +7,7 @@ const AddPostion = require('./position');
 const AddPerson = require('./addPerson');
 const AddReset = require('./reset');
 const MatchData = require('./match');
+const tempMatch = require('./tempmatch');
 const mongoose = require('mongoose');
 
 module.exports = function (http, app) {
@@ -69,9 +70,9 @@ module.exports = function (http, app) {
         })
 
         socket.on('getUpcomming', async (data, ack) => {
-            if (!data.match_id) {
-                ack({ success: false, message: "Match id is required" });
-            }
+            // if (!data.match_id) {
+            //     ack({ success: false, message: "Match id is required" });
+            // }
             if(data.is_show_refree){
                 data.is_show_refree = true;
                 data.is_show_coach = false;
@@ -113,8 +114,10 @@ module.exports = function (http, app) {
                 data.is_show_commentator = false;
                 data.is_show_flag = false;
             }
-            let query = { _id: data.match_id };
-            await AddPerson.updatePerson(query, data, io,'setUpcomming');
+            // let query = { _id: data.match_id };
+            // await AddPerson.updatePerson(query, data, io,'setUpcomming');
+            await tempMatch.updateTempData(data, io,'setUpcomming');
+            
         })
 
 
@@ -139,11 +142,12 @@ module.exports = function (http, app) {
                     data.is_show_video = false;
                 }
             }
-            if (!data.match_id) {
-                ack({ success: false, message: "Match id is required" });
-            }
-            let query = { _id: data.match_id }
-            await HideShow(query, data, io, 'updateHideShow');
+            // if (!data.match_id) {
+            //     ack({ success: false, message: "Match id is required" });
+            // }
+            // let query = { _id: data.match_id }
+            // await HideShow(query, data, io, 'updateHideShow');
+            await tempMatch.updateTempData(data, io,'updateHideShow');
         })
 
         socket.on('getMultiMedia', async (data, ack) => {
@@ -151,9 +155,9 @@ module.exports = function (http, app) {
             if (!data.match_id) {
                 ack({ success: false, messsage: 'Match id is required' })
             }
-            let query = { _id: data.match_id }
-
-            await MatchData.match(query, io, 'updateMultiMedia');
+            // let query = { _id: data.match_id }
+            // await MatchData.match(query, io, 'updateMultiMedia');
+            await MatchData.tempmatch(data, io,'updateMultiMedia');
         })
 
 

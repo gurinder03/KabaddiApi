@@ -27,8 +27,8 @@ module.exports.updateReset = async(query,io, name) => {
     .populate('tournament')
     .populate('winning_team')
     .populate('losing_team')
-    .then((resdata) => {
-        io.emit(name, resdata);
+    .then(async(resdata) => {
+        io.emit(name, resdata); 
     }).catch((err) => {
         console.log("Error", err);
     })
