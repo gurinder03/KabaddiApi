@@ -9,18 +9,17 @@ module.exports.updateReset = async(query,io, name) => {
         'teamA_score.raider': 0,
         'teamA_score.score': 0,
         'teamA_score.position': "none",
-        'teamA.admin_position':"none",
+        'teamA_score.admin_position':"none",
         'teamA_score.addon':0,
         'teamB_score.hold': 0,
         'teamB_score.stopper': 0,
         'teamB_score.raider': 0,
         'teamB_score.score': 0,
         'teamB_score.position': "none",
-        'teamB.admin_position':"none",
+        'teamB_score.admin_position':"none",
         'teamB_score.addon':0,
         is_score_added: false
     }
-    console.log("== chekc query query ===",query);
 
     mongoose.model("matches").findOneAndUpdate(query, update, { new: true })   
     .populate('teamA')

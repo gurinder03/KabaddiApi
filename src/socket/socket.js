@@ -360,7 +360,6 @@ module.exports = function (http, app) {
         })
 
         socket.on('getReset', async (data, ack) => {
-            console.log("=== >>>> //// === // ====",data);
             if (!data.match_id) {
                 ack({ success: false, message: "Match id is required" });
             }
