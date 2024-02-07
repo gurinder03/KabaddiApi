@@ -5,7 +5,8 @@ const myTask = () => {
   console.log('Task executed at 12:00 AM');
   mongoose.model("tempmatch").findOne({}).then(async(resdata) =>{
     let id = resdata._id;
-    await mongoose.model("tempmatch").findOneAndUpdate({_id: id},{
+    await Promise.all([
+      mongoose.model("tempmatch").findOneAndUpdate({_id: id},{
         is_show_federation_logo:false,
         is_show_add:false,
         is_show_image:false,
@@ -27,10 +28,18 @@ const myTask = () => {
         chiefguest: [],
         refree: [],
         commentator: [],
+        team:[],
         match:[],
         card:[],
-        coach:[]
-    },{new: true}),then().catch();
+        coach:[]  
+    },{new: true}),then().catch(),
+     mongoose.model("refrees").updateMany({},{is_checked:false},{new: true}),then().catch(),
+     mongoose.model("chiefguest").updateMany({},{is_checked:false},{new: true}),then().catch(),
+     mongoose.model("coach").updateMany({},{is_checked:false},{new: true}),then().catch(),
+     mongoose.model("commentators").updateMany({},{is_checked:false},{new: true}),then().catch(),
+     mongoose.model("matches").updateMany({},{is_checked:false},{new: true}),then().catch(),
+     mongoose.model("teams").updateMany({},{is_checked:false},{new: true}),then().catch()
+    ]) 
     
   }).catch((err) =>{
     console.log("Error to update",err);
