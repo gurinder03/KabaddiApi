@@ -14,7 +14,8 @@ const adminSignup =  async (req, res) => {
          return Response.validatorResponse(res, "Admin is already exist.");
       }
       req.body.is_account_verified = true;
-      let result = await Controller.adminSignup(req.body);
+      let result = await Controller.admin
+      Signup(req.body);
       return Response.successResponse(res, "Signup successfully", result);
    } catch (err) {
       console.log(err);

@@ -12,6 +12,6 @@ module.exports.updatePerson = async(query, update, io, name) => {
             io.emit("updateScore",resdata);
         }).catch((err) => {
             console.log("Error", err);
-        })
+        })  
 
 }

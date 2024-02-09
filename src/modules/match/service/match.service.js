@@ -2,6 +2,7 @@
 const Response = require('../../../utils/response');
 const utcHelper = require('../../../helper/utc');
 const mongoose = require('mongoose');
+const app = require('../../../app');
 const Controller = require('../controller/match.controller');
 
 const add = async (req, res) => {
@@ -29,6 +30,7 @@ const view = async (req, res) => {
 const update = async (req, res) => {
    try {
       const payload = req.body;
+      const io = app.get("socketIO");
       if(payload.match_id){
          await mongoose.model("matches").findOneAndUpdate({_id: payload.match_id},{match: payload.match},{new: true});
       }
