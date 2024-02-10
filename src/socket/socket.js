@@ -1,14 +1,12 @@
 'user strict'
 
 const DBQuery = require('./query');
-const HideShow = require('./showHide');
 const AddScore = require('./score');
 const AddPostion = require('./position');
-const AddPerson = require('./addPerson');
 const AddReset = require('./reset');
 const MatchData = require('./match');
-const tempMatch = require('./tempmatch');
-const mongoose = require('mongoose');
+const TempMatch = require('./tempmatch');
+
 
 module.exports = function (http, app) {
     const io = require('socket.io')(http, {
@@ -51,9 +49,6 @@ module.exports = function (http, app) {
         socket.on('getCard', async (data, ack) => {
             let update = {};
             console.log("getCard getCard",data);
-            // if (!data.match_id) {
-            //     ack({ success: false, message: "Match id is required" });
-            // }
             if(data.card){
                 update.card =  data.card;
             }
@@ -65,15 +60,10 @@ module.exports = function (http, app) {
                 update.is_show_commentator = false;
                 update.is_show_match = false;
             }
-            // let query = { _id: data.match_id };
-            // await AddPerson.updatePerson(query, update, io,'setCard');
-            await tempMatch.updateTempData(data, io,'setCard');
+            await TempMatch.updateTempData(data, io,'setCard');
         })
 
         socket.on('getUpcomming', async (data, ack) => {
-            // if (!data.match_id) {
-            //     ack({ success: false, message: "Match id is required" });
-            // }
             if(data.is_show_refree){
                 data.is_show_refree = true;
                 data.is_show_coach = false;
@@ -115,12 +105,19 @@ module.exports = function (http, app) {
                 data.is_show_commentator = false;
                 data.is_show_flag = false;
             }
-            // let query = { _id: data.match_id };
-            // await AddPerson.updatePerson(query, data, io,'setUpcomming');
-            await tempMatch.updateTempData(data, io,'setUpcomming');
+            if(data.is_show_team){
+                data.is_show_team = true; 
+                data.is_show_match = false; 
+                data.is_show_chiefguest = false;
+                data.is_show_refree = false;
+                data.is_show_coach = false;
+                data.is_show_commentator = false;
+                data.is_show_flag = false;
+            }
+
+            await TempMatch.updateTempData(data, io,'setUpcomming');
             
         })
-
 
         socket.on('getHideShow', async (data, ack) => {
             console.log(data, "Show difgoefgpfg we")
@@ -143,21 +140,13 @@ module.exports = function (http, app) {
                     data.is_show_video = false;
                 }
             }
-            // if (!data.match_id) {
-            //     ack({ success: false, message: "Match id is required" });
-            // }
-            // let query = { _id: data.match_id }
-            // await HideShow(query, data, io, 'updateHideShow');
-            await tempMatch.updateTempData(data, io,'updateHideShow');
+            await TempMatch.updateTempData(data, io,'updateHideShow');
         })
 
         socket.on('getMultiMedia', async (data, ack) => {
-
             if (!data.match_id) {
                 ack({ success: false, messsage: 'Match id is required' })
             }
-            // let query = { _id: data.match_id }
-            // await MatchData.match(query, io, 'updateMultiMedia');
             await MatchData.tempmatch(data, io,'updateMultiMedia');
         })
 
@@ -396,6 +385,74 @@ module.exports = function (http, app) {
             }
             let query = { _id: data.match_id }
             await DBQuery(query, update, io, data, 'updateStopper');
+        })
+
+        socket.on('getRound', async (data, ack) => {
+            let update = {};
+            if (!data.match_id) {
+                ack({ success: false, message: "Match id is required" });
+            }
+            if (!data.round) {
+                ack({ success: false, message: "Round is required" });
+            }
+            update = {round: data.round}
+            let query = { _id: data.match_id }
+            await AddPostion.updatePostion(query, update, io, 'updatePosition');
+        })
+
+        socket.on("tempdDataGet",async(data,ack) =>{
+            if(data.refree && data.refree.length > 0){
+                data.is_show_refree = true;
+                data.is_show_coach = false;
+                data.is_show_chiefguest = false;
+                data.is_show_commentator = false;
+                data.is_show_match = false;
+                data.is_show_flag = false;
+            }
+            if(data.coach && data.coach.length > 0){
+                data.is_show_coach = true;
+                data.is_show_refree = false;
+                data.is_show_chiefguest = false;
+                data.is_show_commentator = false;
+                data.is_show_match = false;
+                data.is_show_flag = false;
+            }
+            if(data.chiefguest && data.chiefguest.length > 0){
+                data.is_show_chiefguest = true; 
+                data.is_show_refree = false;
+                data.is_show_coach = false;
+                data.is_show_commentator = false;
+                data.is_show_match = false;
+                data.is_show_flag = false;
+            }
+            if(data.commentator && data.commentator.length > 0){
+                data.is_show_commentator = true; 
+                data.is_show_chiefguest = false;
+                data.is_show_coach = false;
+                data.is_show_refree = false;
+                data.is_show_match = false;
+                data.is_show_flag = false;
+                data.is_show_flag = false;
+            }
+            if(data.match && data.match.length > 0){
+                data.is_show_match = true; 
+                data.is_show_chiefguest = false;
+                data.is_show_refree = false;
+                data.is_show_coach = false;
+                data.is_show_commentator = false;
+                data.is_show_flag = false;
+            }
+            if(data.team && data.team.length > 0){
+                data.is_show_team = true; 
+                data.is_show_match = false; 
+                data.is_show_chiefguest = false;
+                data.is_show_refree = false;
+                data.is_show_coach = false;
+                data.is_show_commentator = false;
+                data.is_show_flag = false;
+            }
+            await TempMatch.updateTempData(data, io,'tempDataSet');
+
         })
         socket.on('disconnect', async function (reason) {
             console.log("Reasons for disconnecting", reason, socket.id);

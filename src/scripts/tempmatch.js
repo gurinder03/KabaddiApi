@@ -8,6 +8,7 @@ mongoose.connect(dbPath).then(() => {
     tempModel.create({
         is_show_federation_logo:false,
         is_show_add:false,
+        is_show_team:false,
         is_show_image:false,
         is_show_coach:false,
         is_show_video:false,
@@ -24,6 +25,7 @@ mongoose.connect(dbPath).then(() => {
         is_show_flag:false,
         is_show_score:false,
         is_show_sponser_logo:false,
+        team:[],
         chiefguest: [],
         refree: [],
         commentator: [],
