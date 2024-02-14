@@ -30,14 +30,10 @@ const view = async (req, res) => {
 const update = async (req, res) => {
    try {
       const payload = req.body;
-<<<<<<< HEAD
-      const io = app.get("socketIO");
       if(payload.match_id){
          await mongoose.model("matches").findOneAndUpdate({_id: payload.match_id},{match: payload.match},{new: true});
       }
-=======
       await mongoose.model("tempmatch").findOneAndUpdate({},{match: payload.match},{new: true});
->>>>>>> e7f7e51a6dd52bdec0dc177a5b04875eae055b3d
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {
