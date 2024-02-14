@@ -41,10 +41,7 @@ if (cluster.isMaster) {
             app.connect(dbConnetion);
             require('./schema/index');
             require('./router/route')(app);
-<<<<<<< HEAD
-=======
             require('./cron/task');
->>>>>>> e7f7e51a6dd52bdec0dc177a5b04875eae055b3d
             require('./socket/socket')(http,app);  
             console.log(`Server is running at ${port}`)
         }
