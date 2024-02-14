@@ -8,12 +8,12 @@ module.exports.add = (req,res,next)=>{
     if(!req.body.teamB){
         return Response.validatorResponse(res,"Team B is required");
     }
-    if(!req.body.date){
-        return Response.validatorResponse(res,"Date is required");
-    }
-    if(!req.body.time){
-        return Response.validatorResponse(res,"Time is required");
-    }
+    // if(!req.body.date){
+    //     return Response.validatorResponse(res,"Date is required");
+    // }
+    // if(!req.body.time){
+    //     return Response.validatorResponse(res,"Time is required");
+    // }
     // if(!req.body.utc_date){
     //     return Response.validatorResponse(res,"Date is required");
     // }
@@ -67,18 +67,18 @@ module.exports.update =  (req,res,next)=>{
     if(!req.body.teamB){
         return Response.validatorResponse(res,"Team B is required");
     }
-    if(!req.body.date){
-        return Response.validatorResponse(res,"Date is required");
-    }
-    if(!req.body.time){
-        return Response.validatorResponse(res,"Time is required");
-    }
-    if(!req.body.utc_date){
-        return Response.validatorResponse(res,"Date is required");
-    }
-    if(!req.body.utc_time){
-        return Response.validatorResponse(res,"Time is required");
-    }
+    // if(!req.body.date){
+    //     return Response.validatorResponse(res,"Date is required");
+    // }
+    // if(!req.body.time){
+    //     return Response.validatorResponse(res,"Time is required");
+    // }
+    // if(!req.body.utc_date){
+    //     return Response.validatorResponse(res,"Date is required");
+    // }
+    // if(!req.body.utc_time){
+    //     return Response.validatorResponse(res,"Time is required");
+    // }
     next(); 
 }
    

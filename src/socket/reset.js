@@ -9,12 +9,14 @@ module.exports.updateReset = async(query,io, name) => {
         'teamA_score.raider': 0,
         'teamA_score.score': 0,
         'teamA_score.position': "none",
+        'teamA_score.admin_position':"none",
         'teamA_score.addon':0,
         'teamB_score.hold': 0,
         'teamB_score.stopper': 0,
         'teamB_score.raider': 0,
         'teamB_score.score': 0,
         'teamB_score.position': "none",
+        'teamB_score.admin_position':"none",
         'teamB_score.addon':0,
         is_score_added: false
     }
@@ -25,8 +27,8 @@ module.exports.updateReset = async(query,io, name) => {
     .populate('tournament')
     .populate('winning_team')
     .populate('losing_team')
-    .then((resdata) => {
-        io.emit(name, resdata);
+    .then(async(resdata) => {
+        io.emit(name, resdata); 
     }).catch((err) => {
         console.log("Error", err);
     })

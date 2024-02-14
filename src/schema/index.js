@@ -2,6 +2,7 @@
 const userModel = require('../modules/user/model/user.model');
 const settingModel = require('../modules/setting/model/setting.model');
 const matchModel = require('../modules/match/model/match.model');
+const tempmatchModel = require('../modules/match/model/tempmatch.model');
 const palyerModel = require('../modules/player/model/player.model');
 const refreeModel = require('../modules/refree/model/refree.model');
 const coachModel = require('../modules/coach/model/coach.model');
@@ -24,6 +25,7 @@ module.exports = {
     commentatorModel,
     tournamentModel,
     chiefguestModel,
+    tempmatchModel,
     advertisementModel
 }
 
