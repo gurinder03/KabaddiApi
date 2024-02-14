@@ -11,10 +11,3 @@ module.exports.updateTempData = async(update, io,name) => {
     })
 
 }
-
-
-// socket tempDataGet me emit karna hai array
-// socket tempDataSet ko on karna hai 
-
-// socket getRound me emit karna hai match_id or round
-// socket setRound ko on karna hai

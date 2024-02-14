@@ -32,6 +32,7 @@ const view = async (req, res) => {
 const update = async (req, res) => {
    try {
       const payload = req.body;
+      console.log("payload",payload);
       const file =  req.file;
       if (file) {
           payload.image = file.location;
@@ -42,6 +43,7 @@ const update = async (req, res) => {
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {
+      console.log("=====",err);
       return Response.internalError(res, err);
    }
 }
