@@ -401,6 +401,7 @@ module.exports = function (http, app) {
         })
 
         socket.on("tempdDataGet",async(data,ack) =>{
+            console.log("======>>>==",data)
             if(data.refree && data.refree.length > 0){
                 data.is_show_refree = true;
                 data.is_show_coach = false;
