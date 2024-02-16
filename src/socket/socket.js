@@ -425,6 +425,8 @@ module.exports = function (http, app) {
             if(data.refree && data.refree.length > 0){
                 data.is_show_refree = true;
                 data.is_show_coach = false;
+                data.is_show_team = false;
+                data.is_show_player = false;
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false;
@@ -433,6 +435,8 @@ module.exports = function (http, app) {
             if(data.coach && data.coach.length > 0){
                 data.is_show_coach = true;
                 data.is_show_refree = false;
+                data.is_show_team = false;
+                data.is_show_player = false;
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false;
@@ -442,6 +446,8 @@ module.exports = function (http, app) {
                 data.is_show_chiefguest = true; 
                 data.is_show_refree = false;
                 data.is_show_coach = false;
+                data.is_show_team = false;
+                data.is_show_player = false;
                 data.is_show_commentator = false;
                 data.is_show_match = false;
                 data.is_show_flag = false;
@@ -450,6 +456,8 @@ module.exports = function (http, app) {
                 data.is_show_commentator = true; 
                 data.is_show_chiefguest = false;
                 data.is_show_coach = false;
+                data.is_show_team = false;
+                data.is_show_player = false;
                 data.is_show_refree = false;
                 data.is_show_match = false;
                 data.is_show_flag = false;
@@ -458,6 +466,8 @@ module.exports = function (http, app) {
             if(data.match && data.match.length > 0){
                 data.is_show_match = true; 
                 data.is_show_chiefguest = false;
+                data.is_show_team = false;
+                data.is_show_player = false;
                 data.is_show_refree = false;
                 data.is_show_coach = false;
                 data.is_show_commentator = false;
@@ -466,6 +476,17 @@ module.exports = function (http, app) {
             if(data.team && data.team.length > 0){
                 data.is_show_team = true; 
                 data.is_show_match = false; 
+                data.is_show_player = false;
+                data.is_show_chiefguest = false;
+                data.is_show_refree = false;
+                data.is_show_coach = false;
+                data.is_show_commentator = false;
+                data.is_show_flag = false;
+            }
+            if(data.player && data.player.length > 0){
+                data.is_show_player = true;
+                data.is_show_match = false; 
+                data.is_show_team = false; 
                 data.is_show_chiefguest = false;
                 data.is_show_refree = false;
                 data.is_show_coach = false;
