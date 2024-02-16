@@ -397,7 +397,7 @@ module.exports = function (http, app) {
             }
             update = {round: data.round}
             let query = { _id: data.match_id }
-            await AddPostion.updatePostion(query, update, io, 'updatePosition');
+            await AddPostion.updatePostion(query, update, io, 'setRound');
         })
 
         socket.on("tempDataGet",async(data,ack) =>{

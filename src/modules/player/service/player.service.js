@@ -35,6 +35,7 @@ const update = async (req, res) => {
       if (file) {
           payload.image = file.location;
       }
+      await mongoose.model("tempmatch").findOneAndUpdate({},{palyer: JSON.parse(payload.palyer)},{new: true});
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {

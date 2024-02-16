@@ -11,6 +11,7 @@ const playerSchema = new mongoose.Schema({
     age:{type: String},
     place:{type: String},
     image:{type: String},
+    is_checked:{type: Boolean, default: false},
     flag:{type: String, default:null},
     status:{type: String,enum:['ban',"notban"],default:"notban"}
 },
