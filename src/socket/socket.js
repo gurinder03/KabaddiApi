@@ -67,6 +67,7 @@ module.exports = function (http, app) {
             if(data.is_show_refree){
                 data.is_show_refree = true;
                 data.is_show_player = false;
+                data.is_show_team = false; 
                 data.is_show_coach = false;
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
@@ -76,6 +77,7 @@ module.exports = function (http, app) {
             if(data.is_show_coach){
                 data.is_show_coach = true;
                 data.is_show_player = false;
+                data.is_show_team = false; 
                 data.is_show_refree = false;
                 data.is_show_chiefguest = false;
                 data.is_show_commentator = false;
@@ -84,6 +86,7 @@ module.exports = function (http, app) {
             }
             if(data.is_show_chiefguest){
                 data.is_show_chiefguest = true; 
+                data.is_show_team = false; 
                 data.is_show_player = false;
                 data.is_show_refree = false;
                 data.is_show_coach = false;
@@ -94,15 +97,16 @@ module.exports = function (http, app) {
             if(data.is_show_commentator){
                 data.is_show_commentator = true; 
                 data.is_show_player = false;
+                data.is_show_team = false; 
                 data.is_show_chiefguest = false;
                 data.is_show_coach = false;
                 data.is_show_refree = false;
                 data.is_show_match = false;
                 data.is_show_flag = false;
-                data.is_show_flag = false;
             }
             if(data.is_show_match){
                 data.is_show_match = true; 
+                data.is_show_team = false; 
                 data.is_show_player = false;
                 data.is_show_chiefguest = false;
                 data.is_show_refree = false;
