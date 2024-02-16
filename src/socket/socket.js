@@ -160,7 +160,7 @@ module.exports = function (http, app) {
                     data.is_show_video = false;
                 }
             }
-            await TempMatch.updateAddData(data, io,'updateHideShow');
+            await TempMatch.updateTempData(data, io,'tempDataSet');
         })
 
         socket.on('getMultiMedia', async (data, ack) => {
