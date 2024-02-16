@@ -141,6 +141,10 @@ module.exports = function (http, app) {
 
         socket.on('getHideShow', async (data, ack) => {
             console.log(data, "Show difgoefgpfg we")
+
+            if(!data.match_id){
+                ack({stausCode: 400, message:"Match id is required"})
+            }
             if (data.type === 'image') {
                 if (data.is_show_image) {
                     data.is_show_image = true;
@@ -160,7 +164,8 @@ module.exports = function (http, app) {
                     data.is_show_video = false;
                 }
             }
-            await TempMatch.updateTempData(data, io,'tempDataSet');
+            let query = {_id: data.match_id}
+            await TempMatch.updateAddData(query,data, io,'updateHideShow');
         })
 
         socket.on('getMultiMedia', async (data, ack) => {

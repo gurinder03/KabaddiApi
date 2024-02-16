@@ -7,6 +7,8 @@ const matchSchema = new mongoose.Schema({
      teamA:{type: mongoose.Schema.Types.ObjectId, ref:"teams"},
      teamB:{type: mongoose.Schema.Types.ObjectId, ref:"teams"},
      tournament:{type: mongoose.Schema.Types.ObjectId, ref:"tournaments"},
+     is_show_image:{type: Boolean, default:false},
+     is_show_video:{type: Boolean, default:false},
      round:{type: String},
      date:{type: Date},
      time:{type: String},

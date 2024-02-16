@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 const tempmatchSchema = new mongoose.Schema({
      is_show_federation_logo:{type: Boolean, default: false},
      is_show_add:{type: Boolean, default: false},
-     is_show_image:{type: Boolean, default:false},
      is_show_coach:{type: Boolean, default:false},
-     is_show_video:{type: Boolean, default:false},
      is_show_player:{type: Boolean, default:false},
      is_show_marquee_logo:{type: Boolean, default: false},
      is_show_full_screen:{type: Boolean, default: false},
