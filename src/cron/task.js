@@ -20,6 +20,7 @@ const myTask = () => {
         is_show_refree:false,
         is_show_chiefguest:false,
         is_show_team:false,
+        is_show_player: false,
         is_show_commentator:false,
         is_show_match:false,
         is_show_flag:false,
@@ -31,14 +32,16 @@ const myTask = () => {
         team:[],
         match:[],
         card:[],
-        coach:[]  
+        coach:[],
+        player:[]  
     },{new: true}),then().catch(),
      mongoose.model("refrees").updateMany({},{is_checked:false},{new: true}),then().catch(),
      mongoose.model("chiefguest").updateMany({},{is_checked:false},{new: true}),then().catch(),
      mongoose.model("coach").updateMany({},{is_checked:false},{new: true}),then().catch(),
      mongoose.model("commentators").updateMany({},{is_checked:false},{new: true}),then().catch(),
      mongoose.model("matches").updateMany({},{is_checked:false},{new: true}),then().catch(),
-     mongoose.model("teams").updateMany({},{is_checked:false},{new: true}),then().catch()
+     mongoose.model("teams").updateMany({},{is_checked:false},{new: true}),then().catch(),
+     mongoose.model("players").updateMany({},{is_checked:false},{new: true}),then().catch()
     ]) 
     
   }).catch((err) =>{
