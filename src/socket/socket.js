@@ -160,7 +160,7 @@ module.exports = function (http, app) {
                     data.is_show_video = false;
                 }
             }
-            await TempMatch.updateTempData(data, io,'updateHideShow');
+            await TempMatch.updateAddData(data, io,'updateHideShow');
         })
 
         socket.on('getMultiMedia', async (data, ack) => {
@@ -193,7 +193,7 @@ module.exports = function (http, app) {
             if (!data.hold) {
                 ack({ success: false, message: "Hold is required" });
             }
-            if (data.team == 'A') {
+            if (data.team == 'A') { 
                 update = {
                     $inc: { 'teamA_score.hold': Number(data.hold) }
                 }
