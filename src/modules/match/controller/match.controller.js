@@ -79,9 +79,10 @@ exports.list = (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
             const obj = {};
-            let { order, page, limit, filter, status } = payload;
+            let { page, limit, filter, status } = payload;
             let size = limit || 10;
             let paged = page || 1;
+            console.log("== paykload payload --", payload);
             if (filter) {
                 obj['$or'] = [];
                 obj["$or"].push({ 'teamA_score.name': { $regex: payload.filter || '', $options: 'i' } })
@@ -90,6 +91,7 @@ exports.list = (payload) => {
             if (status) {
                 obj.status = { $in: payload.status }
             }
+            console.log("== auery qeury ===",obj);
             let aggregateQuery = [
                 {
                     $match: obj
