@@ -75,17 +75,15 @@ module.exports.GETLIST = async (params, callback) => {
     let aggregateQueryCount = [];
     console.log("==== vdvds", params.aggregateQuery)
     params.aggregateQuery.map((agg) => {
-        const keys = Object.keys(agg);
-        for (const key of keys) {
-            if (key !== '$match' && key !== '$sort' && key !== '$skip' && key !== '$limit') {
+            if (!agg.hasOwnProperty('$match') && !agg.hasOwnProperty('$sort') && !agg.hasOwnProperty('$skip') && !agg.hasOwnProperty('$limit')) {
                 aggregateQueryCount.push(agg)
             }
-        }
-
-
+        
     })
+    console.log("///===0000000000========", aggregateQueryCount)
+    console.log("MMMMMMMMMMM")
     aggregateQueryCount.push({ $group: { _id: null, count: { $sum: 1 } } });
-    console.log("///===========", aggregateQueryCount, aggregateQueryCount.reverse())
+    console.log("///===========", aggregateQueryCount)
     let count = await Collection.aggregate([{ $match: params.obj }, { $group: { _id: null, count: { $sum: 1 } } }]);
     let totalcount = count.length > 0 ? count[0].count : 0;
     return await Collection
