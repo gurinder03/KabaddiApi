@@ -91,6 +91,7 @@ exports.list = (payload) => {
             if (status) {
                 obj.status = { $in: payload.status }
             }
+
             let aggregateQuery = [
               
                 {
@@ -167,84 +168,10 @@ exports.list = (payload) => {
                 { $limit: parseInt(size) },
             ]
   
-            let aggregateQueryCount = [
-              
-                {
-                    $lookup: {
-                        from: "teams",
-                        localField: "teamA",
-                        foreignField: "_id",
-                        as: "teamA"
-                    }
-                },
-                { $unwind: {path: "$teamA",preserveNullAndEmptyArrays: true} },
-                {
-                    $lookup: {
-                        from: "teams",
-                        localField: "teamB",
-                        foreignField: "_id",
-                        as: "teamB"
-                    }
-                },
-                { $unwind: {path: "$teamB",preserveNullAndEmptyArrays: true} },
-                {
-                    $lookup: {
-                        from: "teams",
-                        localField: "winning_team",
-                        foreignField: "_id",
-                        as: "winning_team"
-                    }
-                },
-                { $unwind: {path: "$winning_team",preserveNullAndEmptyArrays: true} },
-                {
-                    $lookup: {
-                        from: "teams",
-                        localField: "losing_team",
-                        foreignField: "_id",
-                        as: "losing_team"
-                    }
-                },
-                { $unwind: {path: "$losing_team",preserveNullAndEmptyArrays: true} },
-                {
-                    $lookup: {
-                        from: "chiefguest",
-                        localField: "chiefguest",
-                        foreignField: "_id",
-                        as: "chiefguest"
-                    }
-                },
-             
-                { $unwind: {path: "$chiefguest",preserveNullAndEmptyArrays: true} },
-                {
-                    $lookup: {
-                        from: "refrees",
-                        localField: "refree",
-                        foreignField: "_id",
-                        as: "refree"
-                    }
-                },
-             
-                { $unwind: {path: "$refrees",preserveNullAndEmptyArrays: true} },
-                {
-                    $lookup: {
-                        from: "commentators",
-                        localField: "commentator",
-                        foreignField: "_id",
-                        as: "commentator"
-                    }
-                },
-             
-                { $unwind: {path: "$commentator",preserveNullAndEmptyArrays: true} },
-                {
-                    $match: obj
-                },
-                { $group: { _id: null, count: { $sum: 1 } } }
-            ]
             let params = {
                 Collection: mongoose.model("matches"),
                 obj: obj,
-                aggregateQuery: aggregateQuery,
-                aggregateQueryCount: aggregateQueryCount
+                aggregateQuery: aggregateQuery
             }
             Handler.GETLIST(params, (err, resdata) => {
                 return err ? reject(err) : resolve({ data: resdata.result, totalcount: resdata.totalcount });
