@@ -73,12 +73,11 @@ module.exports.DELETE = async (params, callback) => {
 module.exports.GETLIST = async (params, callback) => {
     let Collection = params.Collection;
     console.log("==== vdvds",params.aggregateQuery)
-    params.aggregateQuery.map((agg) =>{
-        delete agg.$match;
-        delete agg.$sort;
-        delete agg.$skip
-        delete agg.$limit
-    })
+        delete params.aggregateQuery[0].$match;
+        delete params.aggregateQuery[0].$sort;
+        delete params.aggregateQuery[0].$skip
+        delete params.aggregateQuery[0].$limit
+    
     params.aggregateQuery.push({ $group: { _id: null, count: { $sum: 1 } } });
     console.log("///===========",params.aggregateQuery)
     let count = await Collection.aggregate([{$match:params.obj},{ $group: { _id: null, count: { $sum: 1 } } }]);
