@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 module.exports.GET = async (params, callback) => {
-   let Collection = params.Collection;
+    let Collection = params.Collection;
     let query = params.query;
     return await Collection
         .findOne(query)
@@ -20,32 +20,32 @@ module.exports.GET = async (params, callback) => {
 module.exports.POST = async (params, callback) => {
     let Collection = params.Collection;
     let payload = params.payload;
-    let [teamA,teamB] = await Promise.all([
-        mongoose.model('teams').findOne({_id: payload.teamA}).select('name logo').then().catch(),
-        mongoose.model('teams').findOne({_id: payload.teamB}).select('name logo').then().catch(),
+    let [teamA, teamB] = await Promise.all([
+        mongoose.model('teams').findOne({ _id: payload.teamA }).select('name logo').then().catch(),
+        mongoose.model('teams').findOne({ _id: payload.teamB }).select('name logo').then().catch(),
     ])
     payload.teamA_score = {
-        name:teamA.name,
+        name: teamA.name,
         is_first_raider_or_stopper: true,
         position: "none",
         logo: teamA.logo,
-        is_score_added:false,
-        hold:0,
-        stopper:0,
-        raider:0,
-        score:0
-      }
-      payload.teamB_score = {
-         name:teamB.name,
-         is_first_raider_or_stopper:true,
-         position: "none",
-         logo: teamB.logo,
-         is_score_added:false,
-         hold:0,    
-         stopper:0,
-         raider:0,
-         score:0
-      }
+        is_score_added: false,
+        hold: 0,
+        stopper: 0,
+        raider: 0,
+        score: 0
+    }
+    payload.teamB_score = {
+        name: teamB.name,
+        is_first_raider_or_stopper: true,
+        position: "none",
+        logo: teamB.logo,
+        is_score_added: false,
+        hold: 0,
+        stopper: 0,
+        raider: 0,
+        score: 0
+    }
     return await Collection
         .create(payload)
         .then((result) => {
@@ -72,20 +72,26 @@ module.exports.DELETE = async (params, callback) => {
 
 module.exports.GETLIST = async (params, callback) => {
     let Collection = params.Collection;
-    console.log("==== vdvds",params.aggregateQuery)
-        delete params.aggregateQuery[0].$match;
-        delete params.aggregateQuery[0].$sort;
-        delete params.aggregateQuery[0].$skip
-        delete params.aggregateQuery[0].$limit
-    
-    params.aggregateQuery.push({ $group: { _id: null, count: { $sum: 1 } } });
-    console.log("///===========",params.aggregateQuery)
-    let count = await Collection.aggregate([{$match:params.obj},{ $group: { _id: null, count: { $sum: 1 } } }]);
-    let totalcount = count.length>0?count[0].count:0;
+    let aggregateQueryCount = [];
+    console.log("==== vdvds", params.aggregateQuery)
+    params.aggregateQuery.map((agg) => {
+        const keys = Object.keys(agg);
+        for (const key of keys) {
+            if (key !== '$match' && key !== '$sort' && key !== '$skip' && key !== '$limit') {
+                aggregateQueryCount.push(agg)
+            }
+        }
+
+
+    })
+    aggregateQueryCount.push({ $group: { _id: null, count: { $sum: 1 } } });
+    console.log("///===========", aggregateQueryCount, aggregateQueryCount.reverse())
+    let count = await Collection.aggregate([{ $match: params.obj }, { $group: { _id: null, count: { $sum: 1 } } }]);
+    let totalcount = count.length > 0 ? count[0].count : 0;
     return await Collection
         .aggregate(params.aggregateQuery)
         .then((result) => {
-            callback(null, {result: result, totalcount: totalcount});
+            callback(null, { result: result, totalcount: totalcount });
         }).catch((err) => {
             callback(err, null)
         })
@@ -97,7 +103,7 @@ module.exports.PATCH = async (params, callback) => {
     let payload = params.payload;
     let query = params.query;
     return await Collection
-        .findOneAndUpdate(query,payload, { upsert: true, new: true })
+        .findOneAndUpdate(query, payload, { upsert: true, new: true })
         .then((result) => {
             callback(null, result);
         }).catch((err) => {
@@ -110,7 +116,7 @@ module.exports.PUT = async (params, callback) => {
     let payload = params.payload;
     let query = params.query;
     return await Collection
-        .findOneAndUpdate(query,payload, { new: true })
+        .findOneAndUpdate(query, payload, { new: true })
         .populate('teamA')
         .populate('teamB')
         .populate('tournament')
@@ -124,19 +130,19 @@ module.exports.PUT = async (params, callback) => {
 }
 
 module.exports.addScore = async (params, callback) => {
-    console.log("= ======",params);
+    console.log("= ======", params);
     let Collection = params.Collection;
     let payload = params.payload;
     let query = params.query;
     let update;
-    if(payload.team == 'A'){
-        update = {$inc: {'teamA_score.score': Number(payload.score)}, is_score_added: true };
-    }  
-    if(payload.team == 'B'){
-        update = {$inc: {'teamB_score.score': Number(payload.score)}, is_score_added: true };
+    if (payload.team == 'A') {
+        update = { $inc: { 'teamA_score.score': Number(payload.score) }, is_score_added: true };
+    }
+    if (payload.team == 'B') {
+        update = { $inc: { 'teamB_score.score': Number(payload.score) }, is_score_added: true };
     }
     return await Collection
-        .findOneAndUpdate(query,update, { new: true })
+        .findOneAndUpdate(query, update, { new: true })
         .populate('teamA')
         .populate('teamB')
         .populate('tournament')
