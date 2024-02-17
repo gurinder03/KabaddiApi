@@ -93,9 +93,7 @@ exports.list = (payload) => {
             }
             console.log("== auery qeury ===",obj);
             let aggregateQuery = [
-                {
-                    $match: obj
-                },
+              
                 {
                     $lookup: {
                         from: "teams",
@@ -162,6 +160,9 @@ exports.list = (payload) => {
                 },
              
                 { $unwind: {path: "$commentator",preserveNullAndEmptyArrays: true} },
+                {
+                    $match: obj
+                },
                 { $sort: { createdAt: -1 } },
                 { $skip: (paged - 1) * size },
                 { $limit: parseInt(size) },
