@@ -85,8 +85,8 @@ exports.list = (payload) => {
             console.log("== paykload payload --", payload);
             if (filter) {
                 obj['$or'] = [];
-                obj["$or"].push({ 'teamA_score.name': { $regex: payload.filter || '', $options: 'i' } })
-                obj["$or"].push({ 'teamB_score.name': { $regex: payload.filter || '', $options: 'i' } })
+                obj["$or"].push({ 'teamA.name': { $regex: payload.filter || '', $options: 'i' } })
+                obj["$or"].push({ 'teamB.name': { $regex: payload.filter || '', $options: 'i' } })
             }
             if (status) {
                 obj.status = { $in: payload.status }
