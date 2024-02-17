@@ -10,8 +10,6 @@ const myTask = () => {
         is_show_federation_logo:false,
         is_show_add:false,
         is_show_image:false,
-        is_show_coach:false,
-        is_show_video:false,
         is_show_marquee_logo:false,
         is_show_full_screen:false,
         is_swap_team:false,
