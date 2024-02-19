@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+const _ = require('underscore');
 const Handler = require('../handler/match.handler');
 
 exports.add = (payload) => {
@@ -34,7 +35,7 @@ exports.view = async (payload) => {
                 if(err){
                     reject(err);
                 }else{
-                    let result =   Object.assign({},resdata,tempData)
+                    let result =   _.merge(resdata,tempData)
                     resolve(result);
                 } 
             })
