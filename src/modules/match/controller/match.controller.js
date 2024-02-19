@@ -35,7 +35,7 @@ exports.view = async (payload) => {
                     reject(err);
                 }else{
                     
-                    resolve({...resdata,...tempData});
+                    resolve({resdata:resdata,tempData: tempData});
                 } 
             })
         } catch (err) {
