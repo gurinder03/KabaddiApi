@@ -22,7 +22,7 @@ const view = async (req, res) => {
    try {
       let result = await Controller.view(req.params);
       console.log("=== result ===",result);
-       return Response.successResponse(res, "View successfully", {...result.resdata, ...result.tempData});
+       return Response.successResponse(res, "View successfully", result);
    } catch (err) {
       return Response.internalError(res, err);
    }
