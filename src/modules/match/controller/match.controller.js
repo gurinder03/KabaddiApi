@@ -34,7 +34,7 @@ exports.view = async (payload) => {
                 if(err){
                     reject(err);
                 }else{
-                    let result =   Object.assign(resdata,tempData)
+                    let result =   Object.assign({},resdata,tempData)
                     resolve(result);
                 } 
             })
