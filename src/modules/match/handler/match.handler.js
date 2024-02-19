@@ -3,6 +3,7 @@ const { default: mongoose } = require("mongoose");
 module.exports.GET = async (params, callback) => {
     let Collection = params.Collection;
     let query = params.query;
+  
     return await Collection
         .findOne(query)
         .populate('teamA')
@@ -124,7 +125,6 @@ module.exports.PUT = async (params, callback) => {
 }
 
 module.exports.addScore = async (params, callback) => {
-    console.log("= ======", params);
     let Collection = params.Collection;
     let payload = params.payload;
     let query = params.query;

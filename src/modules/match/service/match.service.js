@@ -44,7 +44,6 @@ const update = async (req, res) => {
 const addScore = async (req, res) => {
    try {
       const payload = req.body;
-      console.log("== apyalod ===",payload);
       let result = await Controller.addScore(payload);
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {

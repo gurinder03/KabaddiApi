@@ -172,7 +172,8 @@ module.exports = function (http, app) {
             if (!data.match_id) {
                 ack({ success: false, messsage: 'Match id is required' })
             }
-            await MatchData.tempmatch(data, io,'updateMultiMedia');
+            let query = {_id: data.match_id};
+            await MatchData.tempmatch(query,data, io,'updateMultiMedia');
         })
 
 

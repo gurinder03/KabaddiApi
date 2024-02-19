@@ -28,8 +28,10 @@ exports.view = async (payload) => {
                 Collection: mongoose.model("matches"),
                 query: { _id: payload.id }
             }
+            let tempData = await mongoose.model("tempmatch").findOne().then().catch();
+            let result = {...resdata,...tempData}
             Handler.GET(params, (err, resdata) => {
-                return err ? reject(err) : resolve(resdata);
+                return err ? reject(err) : resolve(result);
             })
         } catch (err) {
             reject(err);
@@ -59,7 +61,6 @@ exports.update = async (payload) => {
 exports.addScore = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log("== payload ===",payload);
             let params = {
                 Collection: mongoose.model("matches"),
                 payload: payload,
