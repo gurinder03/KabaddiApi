@@ -61,7 +61,7 @@ exports.view = async (payload) => {
                     resdata.coach =  tempData.coach
                     resdata.player =  tempData.player 
                     
-                    resolve({resdata:resdata,tempData: tempData});
+                    resolve(resdata);
                 } 
             })
         } catch (err) {
