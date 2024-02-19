@@ -17,7 +17,6 @@ const matchSchema = new mongoose.Schema({
      is_checked:{type: Boolean, default: false},
      federation_logo:{type: String, default:null},
 
-
     is_show_federation_logo:{type: Boolean, default: false},
     is_show_add:{type: Boolean, default: false},
     is_show_coach:{type: Boolean, default: false},
