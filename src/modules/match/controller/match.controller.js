@@ -29,9 +29,14 @@ exports.view = async (payload) => {
                 query: { _id: payload.id }
             }
             let tempData = await mongoose.model("tempmatch").findOne().then().catch();
-            let result = {...resdata,...tempData}
+         
             Handler.GET(params, (err, resdata) => {
-                return err ? reject(err) : resolve(result);
+                if(err){
+                    reject(err);
+                }else{
+                    let result = {...resdata,...tempData}
+                    resolve(result);
+                } 
             })
         } catch (err) {
             reject(err);
