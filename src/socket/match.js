@@ -22,7 +22,7 @@ module.exports.tempmatch = async (query,update, io, name) => {
     .populate('tournament')
     .populate('winning_team')
     .populate('losing_team').then(async(resdata) => {
-        let tempData = await mongoose.model("tempmatch").findOneAndUpdate(update,{new: true}).then().catch();
+        let tempData = await mongoose.model("tempmatch").findOneAndUpdate({},update,{new: true}).then().catch();
         resdata.is_show_federation_logo = tempData.is_show_federation_logo
         resdata.is_show_add =   tempData.is_show_add
         resdata.is_show_coach =  tempData.is_show_coach
