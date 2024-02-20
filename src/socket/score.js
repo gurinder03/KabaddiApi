@@ -2,7 +2,10 @@
 const mongoose = require('mongoose');
 
 module.exports.updateScore = async(query, update,data, io, name) => {
+
+    console.log("====================///////////")
     console.log("====update===",update, query);
+    console.log("///////////////////////=====")
         mongoose.model("matches").findOneAndUpdate(query, update,{new: true})
         .populate('teamA')
         .populate('teamB')
