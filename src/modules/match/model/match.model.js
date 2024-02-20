@@ -26,6 +26,7 @@ const matchSchema = new mongoose.Schema({
     is_swap_team:{type: Boolean, default: false},
     is_score_added:{type: Boolean, default: false},
     is_score_done:{type: Boolean, default: false},
+    is_score_done:{type: Boolean, default: false},
     is_show_refree:{type: Boolean, default: false},
     is_show_chiefguest:{type: Boolean, default: false},
     is_show_team:{type: Boolean, default: false},
