@@ -17,7 +17,7 @@ module.exports.updateReset = async(query,io, name) => {
         'teamB_score.score': 0,
         'teamB_score.position': "none",
         'teamB_score.admin_position':"none",
-        "round":"Round - 1"
+        "round":"Round - 1",
         'teamB_score.addon':0,
         is_score_added: false
     }
