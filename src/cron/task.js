@@ -13,8 +13,6 @@ const myTask = () => {
         is_show_marquee_logo:false,
         is_show_full_screen:false,
         is_swap_team:false,
-        is_score_added:false,
-        is_score_done:false,
         is_show_refree:false,
         is_show_chiefguest:false,
         is_show_team:false,
