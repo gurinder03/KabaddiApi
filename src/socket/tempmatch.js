@@ -31,8 +31,6 @@ module.exports.updateAddData = async(query, update, io, name) => {
             resdata.is_show_marquee_logo = tempData.is_show_marquee_logo
             resdata.is_show_full_screen = tempData.is_show_full_screen
             resdata.is_swap_team =  tempData.is_swap_team
-            resdata.is_score_added = tempData.is_score_added
-            resdata.is_score_done =   tempData.is_score_done
             resdata.is_show_refree = tempData.is_show_refree
             resdata.is_show_chiefguest = tempData.is_show_chiefguest
             resdata.is_show_team =  tempData.is_show_team

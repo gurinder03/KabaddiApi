@@ -37,7 +37,7 @@ module.exports = async (query, update, io, data, name) => {
                     score = resdata.teamA_score.raider + resdata.teamA_score.stopper + resdata.teamA_score.addon;
                     isScore = true
                 }
-                data_Res = await mongoose.model("matches").findOneAndUpdate(query, { 'teamA_score.score': score,is_score_done: isScore }, { new: true }).then().catch();
+                data_Res = await mongoose.model("matches").findOneAndUpdate(query, { 'teamA_score.score': score,is_score_done: isScore,is_score_added: isScore }, { new: true }).then().catch();
                 res = {
                     match_id: resdata._id,
                     team: data.team,
@@ -52,7 +52,7 @@ module.exports = async (query, update, io, data, name) => {
                     score = resdata.teamB_score.raider + resdata.teamB_score.stopper + resdata.teamB_score.addon;
                     isScore = true;
                 }
-                data_Res = await mongoose.model("matches").findOneAndUpdate(query, { 'teamB_score.score': score,is_score_done: isScore }, { new: true }).then().catch();
+                data_Res = await mongoose.model("matches").findOneAndUpdate(query, { 'teamB_score.score': score,is_score_done: isScore,is_score_added: isScore }, { new: true }).then().catch();
                 res = {
                     match_id: resdata._id,
                     team: data.team,
