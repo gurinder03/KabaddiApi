@@ -27,7 +27,7 @@ const update = async (req, res) => {
    try {
       const payload = req.body;
       if(payload.teams){
-         let players = await mongoose.model("players").find({team: mongoose.Types.ObjectId(id)});
+         let players = await mongoose.model("players").find({team: mongoose.Types.ObjectId(payload.id)});
          let teamList = JSON.parse(payload.teams);
          teamList.players = players;
          await mongoose.model("tempmatch").findOneAndUpdate({},{team: teamList},{new: true});
