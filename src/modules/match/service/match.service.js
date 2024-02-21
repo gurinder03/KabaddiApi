@@ -20,8 +20,16 @@ const add = async (req, res) => {
 
 const view = async (req, res) => {
    try {
-      console.log("== reqre",req.headers,req.header)
       let result = await Controller.view(req.params);
+       return Response.successResponse(res, "View successfully", result);
+   } catch (err) {
+      return Response.internalError(res, err);
+   }
+}
+
+const adminview = async (req, res) => {
+   try {
+      let result = await Controller.adminview(req.params);
        return Response.successResponse(res, "View successfully", result);
    } catch (err) {
       return Response.internalError(res, err);
@@ -63,6 +71,7 @@ const list = async(req,res) =>{
 
 exports.view = view;
 exports.add = add;
+exports.adminview = adminview
 exports.update = update;
 exports.list = list;
 exports.addScore = addScore;

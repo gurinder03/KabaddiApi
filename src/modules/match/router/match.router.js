@@ -11,6 +11,7 @@ const Service =  require('../service/match.service');
 Router.post("/add",Validator.add,Service.add);
 Router.post("/list",Validator.list,Service.list);
 Router.get("/view/:id",Validator.view,Service.view);
+Router.get("/admin/view/:id",Validator.view,Service.adminview);
 Router.post("/update",Validator.update,Service.update);
 Router.post("/add/score",Service.addScore);
 

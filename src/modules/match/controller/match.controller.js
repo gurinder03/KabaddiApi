@@ -21,6 +21,26 @@ exports.add = (payload) => {
 
 }
 
+exports.adminview =  async (payload) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let params = {
+                Collection: mongoose.model("matches"),
+                query: { _id: payload.id }
+            }
+            Handler.GET(params, (err, resdata) => {
+                if(err){
+                }else{                    
+                    resolve(resdata);
+                } 
+            })
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
+
 exports.view = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
