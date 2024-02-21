@@ -1,17 +1,10 @@
 
 const Response = require('../../../utils/response');
-const app = require('../../../app');
+const mongoose = require('mongoose');
 const Controller = require('../controller/team.controller');
 
 const add = async (req, res) => {
    try {
-      // const file = req.file;
-      // if (!file) {
-      //     return Response.validatorResponse(res, "Logo is required");
-      // }
-      // if (file) {
-      //     req.body.logo = file.location;
-      // }
       delete req.body.id;
       let result = await Controller.add(req.body);
       return Response.successResponse(res, "Added successfully", result);
@@ -33,11 +26,13 @@ const view = async (req, res) => {
 const update = async (req, res) => {
    try {
       const payload = req.body;
-      // const file =  req.file;
-      // if (file) {
-      //     payload.logo = file.location;
-      // }
-
+      if(payload.teams){
+         let players = await mongoose.model("players").find({team: mongoose.Types.ObjectId(id)});
+         let teamList = JSON.parse(payload.teams);
+         teamList.players = players;
+         await mongoose.model("tempmatch").findOneAndUpdate({},{team: teamList},{new: true});
+      }
+    
       let result = await Controller.update(payload);
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {
