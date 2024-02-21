@@ -6,7 +6,7 @@ exports.add = (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
             let params = {
-                Collection: mongoose.model("refrees"),
+                Collection: mongoose.model("coach"),
                 payload: payload
             }
             Handler.POST(params, (err, resdata) => {
@@ -23,7 +23,7 @@ exports.view = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
             let params = {
-                Collection: mongoose.model("refrees"),
+                Collection: mongoose.model("coach"),
                 query: { _id: payload.id }
             }
             Handler.GET(params, (err, resdata) => {
@@ -39,7 +39,7 @@ exports.update = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
             let params = {
-                Collection: mongoose.model("refrees"),
+                Collection: mongoose.model("coach"),
                 payload: payload,
                 query: { _id: payload.id }
             }
