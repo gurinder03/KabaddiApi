@@ -62,7 +62,7 @@ module.exports = function (http, app) {
                 update.is_show_commentator = false;
                 update.is_show_match = false;
             }
-            await TempMatch.updateTempData(data, io,'setCard');
+            await TempMatch.updateTempData(update, io,'setCard');
         })
 
         socket.on('getUpcomming', async (data, ack) => {
