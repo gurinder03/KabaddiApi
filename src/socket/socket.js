@@ -52,6 +52,7 @@ module.exports = function (http, app) {
             if(data.card){
                 update.card =  data.card;
             }
+            //
             if(data.is_show_flag){
                 update.is_show_flag = true;
                 update.is_show_refree = false;
