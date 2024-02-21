@@ -12,8 +12,6 @@ module.exports.updateTempData = async(update, io,name) => {
 
 }
 
-
-
 module.exports.updateAddData = async(query, update, io, name) => {
     mongoose.model("matches").findOneAndUpdate(query, update, { new: true })
         .populate('teamA')
