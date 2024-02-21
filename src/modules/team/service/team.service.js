@@ -33,7 +33,7 @@ const update = async (req, res) => {
          let teamList = JSON.parse(payload.teams);
          teamList.players = players;
          console.log("== TeamList ==", teamList);
-         await mongoose.model("tempmatch").findOneAndUpdate({},{team: teamList},{new: true});
+         await mongoose.model("tempmatch").findOneAndUpdate({},{team: JSON.parse(JSON.stringify(teamList))},{new: true});
       }
     
       let result = await Controller.update(payload);
