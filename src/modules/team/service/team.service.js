@@ -26,7 +26,6 @@ const view = async (req, res) => {
 const update = async (req, res) => {
    try {
       const payload = req.body;
-      console.log("== paylaod ==payload ===",payload);
       if(payload.teams){
          let team = await mongoose.model("teams").findOne({_id: payload.id}).then().catch();
          team.players = await mongoose.model("players").find({team: payload.id}).then().catch();
