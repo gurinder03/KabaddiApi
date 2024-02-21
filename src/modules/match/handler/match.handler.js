@@ -110,8 +110,12 @@ module.exports.PUT = async (params, callback) => {
     let Collection = params.Collection;
     let payload = params.payload;
     let query = params.query;
-    console.log("=====/////// params ===", payload);
+    console.log("=====/////// params ===", params);
+    payload.commentator = JSON.parse(JSON.stringify(payload.commentator));
+    payload.refree = JSON.parse(JSON.stringify(payload.refree));
+    payload.chiefguest = JSON.parse(JSON.stringify(payload.commentator));
 
+    console.log("======pp",payload);
 
     return await Collection
         .findOneAndUpdate(query, payload, { new: true })
