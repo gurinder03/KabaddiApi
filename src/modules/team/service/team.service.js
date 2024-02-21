@@ -28,7 +28,7 @@ const update = async (req, res) => {
       const payload = req.body;
       console.log("== paylaod ==payload ===",payload);
       if(payload.teams){
-         let players = await mongoose.model("players").find({team: mongoose.Types.ObjectId(payload.id)});
+         let players = await mongoose.model("players").find({team: mongoose.Schema.ObjectId(payload.id)});
          console.log("== players player ==",players);
          let teamList = JSON.parse(payload.teams);
          teamList.players = players;
