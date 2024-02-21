@@ -57,6 +57,15 @@ const list = async(req,res) =>{
    }
 }
 
+const remove = async(req,res) =>{
+   try{
+       let result = await Controller.removeChiefguest(req.body);
+       return Response.successResponse(res, "Remove successfully", result);
+   }catch(err){
+       return Response.internalError(res,err);
+   }
+}
+
 const listAll = async(req,res) =>{
    try{
        let result = await Controller.listAll();
@@ -70,5 +79,6 @@ exports.view = view;
 exports.add = add;
 exports.update = update;
 exports.listAll = listAll;
+exports.remove = remove;
 exports.list = list;
 

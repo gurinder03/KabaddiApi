@@ -27,6 +27,15 @@ const view = async (req, res) => {
    }
 }
 
+const remove = async(req,res) =>{
+   try{
+       let result = await Controller.removeMatch(req.body);
+       return Response.successResponse(res, "Remove successfully", result);
+   }catch(err){
+       return Response.internalError(res,err);
+   }
+}
+
 const adminview = async (req, res) => {
    try {
       let result = await Controller.adminview(req.params);
@@ -75,4 +84,5 @@ exports.adminview = adminview
 exports.update = update;
 exports.list = list;
 exports.addScore = addScore;
+exports.remove = remove
 

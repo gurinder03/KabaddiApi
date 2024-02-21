@@ -45,6 +45,15 @@ const update = async (req, res) => {
    }
 }
 
+const remove = async(req,res) =>{
+   try{
+       let result = await Controller.removeRefree(req.body);
+       return Response.successResponse(res, "Remove successfully", result);
+   }catch(err){
+       return Response.internalError(res,err);
+   }
+}
+
 const list = async(req,res) =>{
    try{
        let result = await Controller.list(req.body);
@@ -66,6 +75,7 @@ const listAll = async(req,res) =>{
 exports.view = view;
 exports.add = add;
 exports.update = update;
+exports.remove = remove
 exports.list = list;
 exports.listAll = listAll;
 

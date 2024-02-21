@@ -28,6 +28,15 @@ const view = async (req, res) => {
    }
 }
 
+const remove = async(req,res) =>{
+   try{
+       let result = await Controller.removePlayer(req.body);
+       return Response.successResponse(res, "Remove successfully", result);
+   }catch(err){
+       return Response.internalError(res,err);
+   }
+}
+
 const update = async (req, res) => {
    try {
       const payload = req.body;
@@ -56,4 +65,4 @@ exports.view = view;
 exports.add = add;
 exports.update = update;
 exports.list = list;
-
+exports.remove = remove

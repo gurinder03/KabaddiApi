@@ -92,6 +92,22 @@ exports.list =  (payload) => {
     })
 }
 
+exports.removeRefree = async (payload) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let params = {
+                Collection: mongoose.model("refrees"),
+                query: { _id: payload.id }
+            }
+            Handler.DELETE(params, (err, resdata) => {
+                return err ? reject(err) : resolve(resdata);
+            })
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
 exports.remove = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {

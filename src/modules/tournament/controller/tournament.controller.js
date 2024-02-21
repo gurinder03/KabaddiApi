@@ -62,7 +62,7 @@ exports.removeTournament = async (payload) => {
                 payload: {status: payload.status},
                 query: { _id: payload.id }
             }
-            Handler.PUT(params, (err, resdata) => {
+            Handler.DELETE(params, (err, resdata) => {
                 return err ? reject(err) : resolve(resdata);
             })
         } catch (err) {

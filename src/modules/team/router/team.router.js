@@ -14,6 +14,7 @@ Router.post("/list",Validator.list,Service.list);
 Router.get("/list",Service.listAll);
 Router.get("/view/:id",Validator.view,Service.view);
 Router.post("/update",Validator.update,Service.update);
+Router.post("/remvoe",Validator.remove,Service.remove);
 
 
 module.exports =  Router;

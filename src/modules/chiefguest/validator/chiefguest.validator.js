@@ -20,6 +20,13 @@ module.exports.view = (req,res,next)=>{
 }
 
 
+module.exports.remove = (req,res,next)=>{
+    if(!req.body.id){
+        return Response.validatorResponse(res,"Id is required");
+    }
+    next();
+}
+
 module.exports.list = (req,res,next)=>{
     if(!req.body.page){
         return Response.validatorResponse(res,"Page number is required");

@@ -15,6 +15,13 @@ module.exports.add = (req,res,next)=>{
     next();
 }
 
+module.exports.remove = (req,res,next)=>{
+    if(!req.body.id){
+        return Response.validatorResponse(res,"Id is required");
+    }
+    next();
+}
+
 
 module.exports.view = (req,res,next)=>{
     if(!req.params.id){

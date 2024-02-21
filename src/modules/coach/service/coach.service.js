@@ -28,6 +28,14 @@ const view = async (req, res) => {
       return Response.internalError(res, err);
    }
 }
+const remove = async(req,res) =>{
+   try{
+       let result = await Controller.removeCoach(req.body);
+       return Response.successResponse(res, "Remove successfully", result);
+   }catch(err){
+       return Response.internalError(res,err);
+   }
+}
 
 const update = async (req, res) => {
    try {
@@ -67,4 +75,5 @@ exports.add = add;
 exports.update = update;
 exports.list = list;
 exports.listAll = listAll;
+exports.remove = remove
 

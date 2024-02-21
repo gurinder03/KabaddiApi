@@ -1,5 +1,6 @@
 
 const Response = require('../../../utils/response');
+const mongoose = require('mongoose');
 const Controller = require('../controller/tournament.controller');
 
 const add = async (req, res) => {
@@ -36,6 +37,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
    try {
       const payload = req.body;
+      await mongoose.model("matches").deleteMany({tournament: payload.id}).then().catch();
       let result = await Controller.removeTournament(payload);
       return Response.successResponse(res, "Remove successfully", result);
    } catch (err) {

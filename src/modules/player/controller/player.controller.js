@@ -19,6 +19,22 @@ exports.add = (payload) => {
 
 }
 
+exports.removePlayer = async (payload) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let params = {
+                Collection: mongoose.model("players"),
+                query: { _id: payload.id }
+            }
+            Handler.DELETE(params, (err, resdata) => {
+                return err ? reject(err) : resolve(resdata);
+            })
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
 exports.view = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {

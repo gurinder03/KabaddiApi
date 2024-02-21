@@ -53,6 +53,22 @@ exports.update = async (payload) => {
 }
 
 
+exports.removeCoach = async (payload) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let params = {
+                Collection: mongoose.model("coach"),
+                query: { _id: payload.id }
+            }
+            Handler.DELETE(params, (err, resdata) => {
+                return err ? reject(err) : resolve(resdata);
+            })
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
 exports.list =  (payload) => {
     return new Promise(async (resolve, reject) => {
         try {

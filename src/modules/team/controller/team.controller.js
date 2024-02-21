@@ -41,6 +41,23 @@ exports.view = async (payload) => {
     })
 }
 
+
+exports.removeTeam = async (payload) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let params = {
+                Collection: mongoose.model("teams"),
+                query: { _id: payload.id }
+            }
+            Handler.DELETE(params, (err, resdata) => {
+                return err ? reject(err) : resolve(resdata);
+            })
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
 exports.update = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
