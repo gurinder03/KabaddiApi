@@ -20,6 +20,7 @@ const add = async (req, res) => {
 
 const view = async (req, res) => {
    try {
+      console.log("== reqre",req.headers. req.header)
       let result = await Controller.view(req.params);
        return Response.successResponse(res, "View successfully", result);
    } catch (err) {
