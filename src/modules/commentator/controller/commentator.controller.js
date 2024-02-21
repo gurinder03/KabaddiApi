@@ -38,7 +38,6 @@ exports.view = async (payload) => {
 exports.update = async (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log("== category category===",payload);
             let params = {
                 Collection: mongoose.model("commentators"),
                 payload: payload,
