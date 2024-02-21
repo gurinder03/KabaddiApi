@@ -47,6 +47,8 @@ module.exports.POST = async (params, callback) => {
         raider: 0,
         score: 0
     }
+
+    console.log("==payload =-=====",payload);
     return await Collection
         .create(payload)
         .then((result) => {
