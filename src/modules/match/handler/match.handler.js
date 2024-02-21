@@ -110,7 +110,7 @@ module.exports.PUT = async (params, callback) => {
     let Collection = params.Collection;
     let payload = params.payload;
     let query = params.query;
-    console.log("=====/////// params ===", query);
+    console.log("=====/////// params ===", payload);
 
 
     return await Collection
