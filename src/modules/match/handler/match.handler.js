@@ -112,10 +112,8 @@ module.exports.PUT = async (params, callback) => {
     let query = params.query;
     console.log("=====/////// params ===", params);
 
-    console.log("======pp",payload);
-
     return await Collection
-        .findOneAndUpdate(query, {$set:payload}, { new: true })
+        .findOneAndUpdate(query, payload, { new: true })
         .populate('teamA')
         .populate('teamB')
         .populate('tournament')
