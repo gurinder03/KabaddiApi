@@ -14,7 +14,7 @@ Router.get("/view/:id",Validator.view,Service.view);
 Router.get("/admin/view/:id",Validator.view,Service.adminview);
 Router.post("/update",Validator.update,Service.update);
 Router.post("/add/score",Service.addScore);
-Router.post("/remvoe",Validator.remove,Service.remove);
+Router.post("/remove",Validator.remove,Service.remove);
 
 
 module.exports =  Router;

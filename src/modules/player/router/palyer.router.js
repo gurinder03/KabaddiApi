@@ -13,7 +13,7 @@ Router.post("/add",uploadImage.single('image'),Validator.add,Service.add);
 Router.post("/list",Validator.list,Service.list);
 Router.get("/view/:id",Validator.view,Service.view);
 Router.post("/update",uploadImage.single('image'),Validator.update,Service.update);
-Router.post("/remvoe",Validator.remove,Service.remove);
+Router.post("/remove",Validator.remove,Service.remove);
 
 
 module.exports =  Router;
