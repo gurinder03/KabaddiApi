@@ -13,9 +13,9 @@ module.exports.GET = async (params, callback) => {
 
 module.exports.DELETE = async (params, callback) => {
     let Collection = params.Collection;
-    let payload = params.payload;
+    let query = params.query;
     return await Collection
-        .deleteOne(payload)
+        .deleteOne(query)
         .then((result) => {
             callback(null, result);
         }).catch((err) => {
