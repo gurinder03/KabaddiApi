@@ -145,7 +145,6 @@ exports.resetPassword =  (payload) => {
                 query: { email_or_mobile_number: payload.email_or_mobile_number }
             }
             Handler.PUT(params, (err, resdata) => {
-                console.log("== err err err ==",err);
                 return err ? reject(err) : resolve(resdata);
             })
 

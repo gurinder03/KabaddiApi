@@ -46,7 +46,6 @@ const update = async (req, res) => {
       }
       await mongoose.model("tempmatch").findOneAndUpdate({},{coach:JSON.parse(payload.coach)},{new: true});
       let result = await Controller.update(payload);
-      console.log("=====>>>===",result)
       return Response.successResponse(res, "Updated successfully", result);
    } catch (err) {
       return Response.internalError(res, err);

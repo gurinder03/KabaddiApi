@@ -5,7 +5,6 @@ const Handler = require('../handler/match.handler');
 exports.add = (payload) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log("=== paylaod ==0",payload);
             delete payload.id;
             let params = {
                 Collection: mongoose.model("matches"),
@@ -132,7 +131,6 @@ exports.list = (payload) => {
             let { page, limit, filter, status } = payload;
             let size = limit || 10;
             let paged = page || 1;
-            console.log("== paykload payload --", payload);
             if (filter) {
                 obj['$or'] = [];
                 obj["$or"].push({ 'teamA.name': { $regex: payload.filter || '', $options: 'i' } })

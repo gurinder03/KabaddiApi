@@ -1,7 +1,6 @@
 const Response = require('../../../utils/response'); 
 
 module.exports.add = (req,res,next)=>{
-    console.log("== bodu ====",req.body);
     if(!req.body.name){
         return Response.validatorResponse(res,"Name is required");
     }

@@ -19,7 +19,6 @@ module.exports.updateAddData = async(query, update, io, name) => {
         .populate('tournament')
         .populate('winning_team')
         .populate('losing_team').then(async(resdata) => {
-            console.log("resdata resdata",update)
             let tempData = await mongoose.model("tempmatch").findOneAndUpdate({},update,{new: true}).then().catch();
             resdata.is_show_federation_logo = tempData.is_show_federation_logo
             resdata.is_show_add =   tempData.is_show_add

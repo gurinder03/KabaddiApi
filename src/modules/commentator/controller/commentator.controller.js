@@ -63,7 +63,6 @@ exports.update = async (payload) => {
                 return err ? reject(err) : resolve(resdata);
             })
         } catch (err) {
-            console.log("gwegegwerrro==",err)
             reject(err);
         }
     })
