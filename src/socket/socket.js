@@ -57,6 +57,7 @@ module.exports = function (http, app) {
                 update.is_show_flag = true;
                 update.is_show_refree = false;
                 update.is_show_team = false;
+                update.is_show_player = false;
                 update.is_show_coach = false;
                 update.is_show_chiefguest = false;
                 update.is_show_commentator = false;
