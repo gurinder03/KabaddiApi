@@ -36,7 +36,7 @@ module.exports.updateAddData = async(query, update, io, name) => {
             resdata.is_show_score = tempData.is_show_score
             resdata.is_show_sponser_logo =  tempData.is_show_sponser_logo
             resdata.chiefguest =   tempData.chiefguest,
-            resdata.team =    tempData.team
+            resdata.team =   await mongoose.model("players").find({ team: new mongoose.Types.ObjectId(payload.id) })
             resdata.refree =  tempData.refree
             resdata.commentator = tempData.commentator
             resdata.match =  tempData.match
