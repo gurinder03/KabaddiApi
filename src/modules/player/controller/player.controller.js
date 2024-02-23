@@ -95,7 +95,7 @@ exports.list =  (payload) => {
                     as: "team"
                  }
                 },
-                {$unwind: {path: "$team", preserveNullAndEmptyArrays: false} },
+                {$unwind: {path: "$team", preserveNullAndEmptyArrays: true} },
                 { $sort: { createdAt: -1 } },
                 {$skip: (paged-1)*size},
                 {$limit: parseInt(size) },
