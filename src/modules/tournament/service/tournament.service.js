@@ -37,7 +37,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
    try {
       const payload = req.body;
-      await mongoose.model("matches").deleteMany({tournament: payload.id}).then().catch();
+      await mongoose.model("matches").deleteMany({tournament: new mongoose.Types.ObjectId(payload.id)}).then().catch();
       let result = await Controller.removeTournament(payload);
       return Response.successResponse(res, "Remove successfully", result);
    } catch (err) {
