@@ -13,9 +13,9 @@ module.exports.GET = async (params, callback) => {
 
 module.exports.POST = async (params, callback) => {
     let Collection = params.Collection;
-    let query = params.query;
+    let payload = params.payload;
     return await Collection
-        .create(query)
+        .create(payload)
         .then((result) => {
             callback(null, result);
         }).catch((err) => {
