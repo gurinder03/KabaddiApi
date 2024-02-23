@@ -34,6 +34,7 @@ module.exports.GETLIST = async (params, callback) => {
         .then((result) => {
             callback(null, {result: result, totalcount: totalcount});
         }).catch((err) => {
+            
             callback(err, null)
         })
 }

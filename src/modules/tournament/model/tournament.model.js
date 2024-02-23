@@ -26,8 +26,7 @@ const tournamentSchema = new mongoose.Schema({
 },
     {
         versionKey: false,
-        timestamps: true
-    }, { createAt: "created_at", updatedAt: "updated_at" })
+    })
 
 module.exports = mongoose.model('tournaments', tournamentSchema, 'tournaments');
 
