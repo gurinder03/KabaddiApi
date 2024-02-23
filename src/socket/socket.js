@@ -493,7 +493,7 @@ module.exports = function (http, app) {
                 data.is_show_commentator = false;
                 data.is_show_flag = false;
                 let players =   await mongoose.model("players").find({ team: new mongoose.Types.ObjectId( data.team[0]._id) })  
-                data.team[0].push(players) 
+                data.team[0].players = players; 
                 console.log("=======//////=====",data.team)
             }
             if(data.player && data.player.length > 0){
