@@ -12,7 +12,6 @@ const add = async (req, res) => {
       if (file) {
           req.body.image = file.location;
       }
-      console.log("======>>>>>===",req.file, req.body)
       let result = await Controller.add(req.body);
       return Response.successResponse(res, "Added successfully", result);
    } catch (err) {
