@@ -102,7 +102,7 @@ exports.list =  (payload) => {
                 obj['$or'] = [];
                 obj["$or"].push({'name': { $regex: payload.filter || '', $options: 'i' }})
             }
-            obj.status = {$ne: "archived"}
+            // obj.status = {$ne: "archived"}
             if(status){
                 obj.status = {$in: payload.status}
             }
@@ -110,7 +110,7 @@ exports.list =  (payload) => {
                 {
                     $match:obj
                 },
-                {$sort :{createdAt: -1}},
+                {$sort :{created_at: -1}},
                 {$skip: (paged-1)*size},
                 {$limit: parseInt(size) },
             ]
