@@ -3,6 +3,7 @@
 const DBQuery = require('./query');
 const AddScore = require('./score');
 const AddPostion = require('./position');
+const mongoose = require('mongoose');
 const AddReset = require('./reset');
 const MatchData = require('./match');
 const TempMatch = require('./tempmatch');
@@ -491,6 +492,9 @@ module.exports = function (http, app) {
                 data.is_show_coach = false;
                 data.is_show_commentator = false;
                 data.is_show_flag = false;
+                let players =   await mongoose.model("players").find({ team: new mongoose.Types.ObjectId( data.team[0]._id) })  
+                data.team[0].push(players) 
+                console.log("=======//////=====",data.team)
             }
             if(data.player && data.player.length > 0){
                 data.is_show_player = true;

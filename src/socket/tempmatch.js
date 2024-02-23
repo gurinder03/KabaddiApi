@@ -37,9 +37,6 @@ module.exports.updateAddData = async(query, update, io, name) => {
             resdata.is_show_sponser_logo =  tempData.is_show_sponser_logo
             resdata.chiefguest =   tempData.chiefguest
             resdata.team  = tempData.team
-            if(tempData.team && tempData.team.length > 0){
-                resdata.team =   await mongoose.model("players").find({ team: new mongoose.Types.ObjectId( tempData.team[0]._id) })  
-            }
             resdata.refree =  tempData.refree
             resdata.commentator = tempData.commentator
             resdata.match =  tempData.match
