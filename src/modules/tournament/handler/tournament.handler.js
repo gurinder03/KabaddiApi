@@ -14,6 +14,7 @@ module.exports.GET = async (params, callback) => {
 module.exports.DELETE = async (params, callback) => {
     let Collection = params.Collection;
     let query = params.query;
+    console.log("======//query quiery==", query, params)
     return await Collection
         .deleteOne(query)
         .then((result) => {
