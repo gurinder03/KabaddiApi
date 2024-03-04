@@ -24,9 +24,10 @@ const tournamentSchema = new mongoose.Schema({
     status: { type: String, enum: ["pending", "start", "cancel", "archived"], default: "pending" },
     video: { type: String }
 },
-    {
-        versionKey: false,
-    })
+{
+    versionKey: false,
+    timestamps: true
+},{createAt: "created_at", updatedAt: "updated_at"})
 
 module.exports = mongoose.model('tournaments', tournamentSchema, 'tournaments');
 
