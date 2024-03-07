@@ -27,8 +27,10 @@ module.exports = function (http, app) {
     global.socketApp = io;
     //all socket listen request
     io.on('connection', function (socket) {
+        console.log("connection >>>>>>>",socket);
         socket.on('usersocket', (data, ack) => {
             try {
+                console.log("usersocket >>>>>>>",data);
                 data.socketId = socket.id;
                 let SocketData = {
                     success: true,
