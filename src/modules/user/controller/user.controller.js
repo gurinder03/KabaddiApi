@@ -182,7 +182,7 @@ exports.list =  (payload) => {
                 {
                     $match:obj
                 },
-                {$sort :{[order_by]:  parseInt(sort_by)}},
+                // {$sort :{[order_by]:  parseInt(sort_by)}},
                 {$skip: (paged-1)*size},
                 {$limit: parseInt(size) },
             ]

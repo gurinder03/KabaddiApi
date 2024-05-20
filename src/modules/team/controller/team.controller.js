@@ -110,7 +110,7 @@ exports.list = (payload) => {
                 {
                     $match: obj
                 },
-                { $sort: { createdAt: -1 } },
+                // { $sort: { createdAt: -1 } },
                 { $skip: (paged - 1) * size },
                 { $limit: parseInt(size) },
             ]
