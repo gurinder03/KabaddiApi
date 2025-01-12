@@ -287,6 +287,8 @@ module.exports = function (http, app) {
                 ack({ success: false, message: "Postion is required" });
             }
             if (data.user_type == "admin") {
+                console.log('data.team');
+                console.log(data.team);
                 if (data.team == 'A') {
                     if (data.position == "left") {
                         update = {
