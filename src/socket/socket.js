@@ -530,11 +530,11 @@ module.exports = function (http, app) {
 
          function SendLiveMatch_trigger(LiveStream)
          {
-          console.log(LiveStream);
           socket.emit("getLive", LiveStream, (response) =>
-        {
-            console.log(response);
-        });
+            {
+                console.log(LiveStream);
+                console.log(response);
+            });
     };
     });
 
