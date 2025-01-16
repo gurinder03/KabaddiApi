@@ -525,17 +525,15 @@ module.exports = function (http, app) {
                 is_live: data,
                 is_Advideo: !data
               };
-              SendLiveMatch_trigger(LiveStream);
+              
+              socket.emit("getLive", LiveStream, (response) =>
+                {
+                    console.log(LiveStream);
+                    console.log(response);
+                });
          });
 
-         function SendLiveMatch_trigger(LiveStream)
-         {
-          socket.emit("getLive", LiveStream, (response) =>
-            {
-                console.log(LiveStream);
-                console.log(response);
-            });
-    };
+         
     });
 
 
