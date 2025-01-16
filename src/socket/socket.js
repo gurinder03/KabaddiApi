@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const AddReset = require('./reset');
 const MatchData = require('./match');
 const TempMatch = require('./tempmatch');
+const { functions } = require('underscore');
 
 
 module.exports = function (http, app) {
@@ -520,19 +521,21 @@ module.exports = function (http, app) {
          socket.on('postLive', async (data, ack) => {
             console.log("postLive @");
             console.log(data);
+            const LiveStream = {
+                is_live: data,
+                is_Advideo: !data
+              };
+              SendLiveMatch_trigger(LiveStream);
          });
 
-         const LiveStream = {
-            is_live: true,
-            is_Advideo: false
-          };
-
+         function SendLiveMatch_trigger()
+         {
           console.log(LiveStream);
          io.emit("getLive", LiveStream, (response) =>
         {
-           
             console.log(response);
         });
+    };
     });
 
 
