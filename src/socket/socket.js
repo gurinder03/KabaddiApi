@@ -528,7 +528,7 @@ module.exports = function (http, app) {
               SendLiveMatch_trigger(LiveStream);
          });
 
-         function SendLiveMatch_trigger()
+         function SendLiveMatch_trigger(LiveStream)
          {
           console.log(LiveStream);
          io.emit("getLive", LiveStream, (response) =>
