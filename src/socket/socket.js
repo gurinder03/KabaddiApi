@@ -518,19 +518,15 @@ module.exports = function (http, app) {
         });
 
          // Swicth Between Live and Ad Video
-         socket.on('postLive', async (data, ack) => {
+         socket.on('postLive', (data, ack) => {
             console.log("postLive @");
             console.log(data);
             const LiveStream = {
                 is_live: data,
                 is_Advideo: !data
               };
-              
-              socket.emit("getLive", LiveStream, (response) =>
-                {
-                    console.log(LiveStream);
-                    console.log(response);
-                });
+
+              io.emit("getLive", LiveStream);
          });
 
          
