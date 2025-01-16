@@ -515,6 +515,12 @@ module.exports = function (http, app) {
         socket.on('disconnect', async function (reason) {
             console.log("Reasons for disconnecting", reason, socket.id);
         });
+
+         // Swicth Between Live and Ad Video
+         socket.on('sendLive', async (data, ack) => {
+            console.log("Send Live @");
+            console.log(data);
+         });
     });
 
 
