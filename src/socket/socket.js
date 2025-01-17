@@ -521,8 +521,10 @@ module.exports = function (http, app) {
          socket.on('postLive', (data, ack) => {
             console.log("postLive @");
             console.log(data);
-           
-              io.emit("getLive", data);
+            res = {
+                is_Live: data,
+            }
+              io.emit("getLive", res);
          });
 
          
