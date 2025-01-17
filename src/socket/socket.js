@@ -521,12 +521,8 @@ module.exports = function (http, app) {
          socket.on('postLive', (data, ack) => {
             console.log("postLive @");
             console.log(data);
-            const LiveStream = {
-                is_live: data,
-                is_Advideo: !data
-              };
-
-              io.emit("getLive", LiveStream);
+           
+              io.emit("getLive", data);
          });
 
          
