@@ -152,25 +152,25 @@ module.exports = function (http, app) {
             if(!data.match_id){
                 ack({stausCode: 400, message:"Match id is required"})
             }
-            // if (data.type === 'image') {
-            //     if (data.is_show_image) {
-            //         data.is_show_image = true;
-            //         data.is_show_video = false;
-            //     } else {
-            //         data.is_show_image = false;
-            //         data.is_show_video = true;
-            //     }
+            if (data.type === 'image') {
+                if (data.is_show_image) {
+                    data.is_show_image = true;
+                    data.is_show_video = false;
+                } else {
+                    data.is_show_image = false;
+                    data.is_show_video = true;
+                }
 
-            // }
-            // if (data.type === 'video') {
-            //     if (data.is_show_video) {
-            //         data.is_show_image = false;
-            //         data.is_show_video = true;
-            //     } else {
-            //         data.is_show_image = true;
-            //         data.is_show_video = false;
-            //     }
-            // }
+            }
+            if (data.type === 'video') {
+                if (data.is_show_video) {
+                    data.is_show_image = false;
+                    data.is_show_video = true;
+                } else {
+                    data.is_show_image = true;
+                    data.is_show_video = false;
+                }
+            }
             let query = {_id: data.match_id}
             console.log(data);
             await TempMatch.updateAddData(query,data, io,'updateHideShow');
