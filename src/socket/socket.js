@@ -148,6 +148,8 @@ module.exports = function (http, app) {
         socket.on('getHideShow', async (data, ack) => {
             console.log(data, "Show difgoefgpfg we")
 
+            console.log(data.type);
+
             if(!data.match_id){
                 ack({stausCode: 400, message:"Match id is required"})
             }

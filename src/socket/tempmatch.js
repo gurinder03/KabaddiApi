@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 
 module.exports.updateTempData = async(update, io,name) => {
+    console.log(update);
+    console.log(io);
+    console.log(name);
     mongoose.model("tempmatch").findOneAndUpdate({}, update, { new: true })
     .then((resdata) => {    
         io.emit(name, resdata);
