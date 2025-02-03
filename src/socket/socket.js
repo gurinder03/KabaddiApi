@@ -222,6 +222,9 @@ module.exports = function (http, app) {
         })
 
         socket.on('getRaider', async (data, ack) => {
+            console.log("getRaider"); 
+            
+            console.log(data);
             let update = {};
             if (!data.team) {
                 ack({ success: false, message: "Team (A or B) is required" });
@@ -247,6 +250,8 @@ module.exports = function (http, app) {
         })
 
         socket.on('getScore', async (data, ack) => {
+            console.log("getScore");
+            console.log(data);
             let update = {};
             if (!data.team) {
                 ack({ success: false, message: "Team (A or B) is required" });
@@ -397,6 +402,8 @@ module.exports = function (http, app) {
 
 
         socket.on('getStopper', async (data, ack) => {
+            console.log("getStopper");
+            console.log(data);
             let update = {};
             if (!data.team) {
                 ack({ success: false, message: "Team (A or B) is required" });

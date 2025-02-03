@@ -9,14 +9,16 @@ module.exports = async (query, update, io, data, name) => {
                 res = {
                     match_id: resdata._id,
                     team: data.team,
-                    teamA_score: resdata.teamA_score
+                    teamA_score: resdata.teamA_score,
+                    teamB_score: resdata.teamB_score
                 }
             }
             if (data.team == 'B') {
                 res = {
                     match_id: resdata._id,
                     team: data.team,
-                    teamB_score: resdata.teamB_score
+                    teamB_score: resdata.teamB_score,
+                    teamA_score: resdata.teamA_score
                 }
             }
             io.emit(name, res);
@@ -41,7 +43,8 @@ module.exports = async (query, update, io, data, name) => {
                 res = {
                     match_id: resdata._id,
                     team: data.team,
-                    teamA_score: data_Res.teamA_score
+                    teamA_score: data_Res.teamA_score,
+                    teamB_score: data_Res.teamB_score
                 }
             }
             if (data.team == 'B') {
@@ -56,7 +59,8 @@ module.exports = async (query, update, io, data, name) => {
                 res = {
                     match_id: resdata._id,
                     team: data.team,
-                    teamB_score: data_Res.teamB_score
+                    teamB_score: data_Res.teamB_score,
+                    teamA_score: data_Res.teamA_score
                 }
             }
 
