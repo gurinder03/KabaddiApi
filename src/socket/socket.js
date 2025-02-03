@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const AddReset = require('./reset');
 const MatchData = require('./match');
 const TempMatch = require('./tempmatch');
+const { functions } = require('underscore');
 
 
 module.exports = function (http, app) {
@@ -173,6 +174,7 @@ module.exports = function (http, app) {
                 }
             }
             let query = {_id: data.match_id}
+            console.log(data);
             await TempMatch.updateAddData(query,data, io,'updateHideShow');
         })
 
@@ -280,6 +282,7 @@ module.exports = function (http, app) {
 
 
         socket.on('getPosition', async (data, ack) => {
+            console.log(data);
             let update = {};
             if (!data.user_type) {
                 ack({ success: false, message: "User type (user_type) is required" });
@@ -294,6 +297,8 @@ module.exports = function (http, app) {
                 ack({ success: false, message: "Postion is required" });
             }
             if (data.user_type == "admin") {
+                console.log('data.team');
+                console.log(data.team);
                 if (data.team == 'A') {
                     if (data.position == "left") {
                         update = {
@@ -522,6 +527,18 @@ module.exports = function (http, app) {
         socket.on('disconnect', async function (reason) {
             console.log("Reasons for disconnecting", reason, socket.id);
         });
+
+         // Swicth Between Live and Ad Video
+         socket.on('postLive', (data, ack) => {
+            console.log("postLive @");
+            console.log(data);
+            res = {
+                is_Live: data,
+            }
+              io.emit("getLive", res);
+         });
+
+         
     });
 
 

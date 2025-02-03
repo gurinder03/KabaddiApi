@@ -31,13 +31,13 @@ const myTask = () => {
         coach:[],
         player:[]  
     },{new: true}),then().catch(),
-     mongoose.model("refrees").updateMany({},{is_checked:false},{new: true}),then().catch(),
-     mongoose.model("chiefguest").updateMany({},{is_checked:false},{new: true}),then().catch(),
-     mongoose.model("coach").updateMany({},{is_checked:false},{new: true}),then().catch(),
-     mongoose.model("commentators").updateMany({},{is_checked:false},{new: true}),then().catch(),
-     mongoose.model("matches").updateMany({},{is_checked:false},{new: true}),then().catch(),
-     mongoose.model("teams").updateMany({},{is_checked:false},{new: true}),then().catch(),
-     mongoose.model("players").updateMany({},{is_checked:false},{new: true}),then().catch()
+     mongoose.model("refrees").updateMany({},{is_checked:false},{new: true}).then().catch(),
+     mongoose.model("chiefguest").updateMany({},{is_checked:false},{new: true}).then().catch(),
+     mongoose.model("coach").updateMany({},{is_checked:false},{new: true}).then().catch(),
+     mongoose.model("commentators").updateMany({},{is_checked:false},{new: true}).then().catch(),
+     mongoose.model("matches").updateMany({},{is_checked:false},{new: true}).then().catch(),
+     mongoose.model("teams").updateMany({},{is_checked:false},{new: true}).then().catch(),
+     mongoose.model("players").updateMany({},{is_checked:false},{new: true}).then().catch()
     ]) 
     
   }).catch((err) =>{

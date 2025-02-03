@@ -55,6 +55,8 @@ const update = async (req, res) => {
 
 const list = async(req,res) =>{
    try{
+      console.log(req.body);
+      console.log("req.body");
        let result = await Controller.list(req.body);
        return Response.successResponseWithCount(res, "List successfully", result.data,result.totalcount);
    }catch(err){
@@ -65,6 +67,8 @@ const list = async(req,res) =>{
 const listAll = async(req,res) =>{
    try{
        let result = await Controller.listAll();
+       console.log(result);
+       console.log("result");
        return Response.successResponse(res, "List successfully", result);
    }catch(err){
        return Response.internalError(res,err);
