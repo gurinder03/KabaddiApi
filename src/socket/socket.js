@@ -222,6 +222,7 @@ module.exports = function (http, app) {
         })
 
         socket.on('getRaider', async (data, ack) => {
+            console.log(data);
             let update = {};
             if (!data.team) {
                 ack({ success: false, message: "Team (A or B) is required" });
@@ -247,6 +248,7 @@ module.exports = function (http, app) {
         })
 
         socket.on('getScore', async (data, ack) => {
+            console.log(data);
             let update = {};
             if (!data.team) {
                 ack({ success: false, message: "Team (A or B) is required" });
@@ -275,6 +277,7 @@ module.exports = function (http, app) {
 
 
         socket.on('getPosition', async (data, ack) => {
+            console.log(getPosition);
             let update = {};
             if (!data.user_type) {
                 ack({ success: false, message: "User type (user_type) is required" });
@@ -399,6 +402,7 @@ module.exports = function (http, app) {
 
 
         socket.on('getStopper', async (data, ack) => {
+            console.log(data);
             let update = {};
             if (!data.team) {
                 ack({ success: false, message: "Team (A or B) is required" });
