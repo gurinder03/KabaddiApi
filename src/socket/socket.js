@@ -277,7 +277,7 @@ module.exports = function (http, app) {
 
 
         socket.on('getPosition', async (data, ack) => {
-            console.log(getPosition);
+            console.log(data);
             let update = {};
             if (!data.user_type) {
                 ack({ success: false, message: "User type (user_type) is required" });
