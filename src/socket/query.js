@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 module.exports = async (query, update, io, data, name) => {
     if (name == "checkStatus") {
         mongoose.model("matches").findOne(query, update).then((resdata) => {
+            console.log(resdata);
             let res = {};
             if (data.team == 'A') {
                 res = {
